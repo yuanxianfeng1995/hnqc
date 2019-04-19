@@ -5,6 +5,7 @@ import java.util.List;
 
 import javabean.Banji;
 import javabean.HibernateSessionFactory;
+import javabean.Outbound;
 import javabean.Student;
 
 import org.hibernate.Query;
@@ -52,9 +53,13 @@ public class Test {
 //    		s=(Banji)session.get(Banji.class,6);
 //    		session.delete(s);
     	    
-    	   query = session.createQuery("from Banji where id=?");
-       	   query.setInteger(0, 5);
-       	Banji tbUser=(Banji) query.uniqueResult();
+    	    
+    	    query=session.createQuery("from Outbound where name=?");
+			query.setString(0, "³¤É³");
+//			list = query.list();
+//    	   query = session.createQuery("from Banji where id=?");
+//       	   query.setInteger(0, 5);
+			Outbound tbUser=(Outbound) query.uniqueResult();
     	    System.out.println(tbUser);
 
     	    //    	    ¸üÐÂ

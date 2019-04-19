@@ -16,6 +16,10 @@ public interface CangkuImpi {
 	public JSONObject query_Outbound(String sql);
 	
 	/**
+	 * 输入参数查找
+	 */
+	public JSONObject query_Outbound(String sql,String name,String value);
+	/**
 	 * 添加出库单
 	 */
 	public JSONObject addOutbound(Outbound outbound);
