@@ -26,6 +26,8 @@
 		<mapping resource="javabean/Banji.hbm.xml" />
 		<mapping resource="javabean/User.hbm.xml" />
 		<mapping resource="javabean/Billentry.hbm.xml" />
+		<mapping resource="javabean/Commodity.hbm.xml" />
+		<mapping resource="javabean/Maintain.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>

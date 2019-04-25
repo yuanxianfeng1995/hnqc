@@ -1,0 +1,90 @@
+{
+  "success": true,
+  "message": "系统处理成功。",
+  "data": {
+    "user": [
+      {
+        "f_id": 0,
+        "f_tenant_id": 0,
+        "f_tenant_name": "系统租户",
+        "f_account": "SuperAdmin",
+        "f_name": "超级管理员",
+        "f_remark": "该账号是开发人员维护系统用，不能提供给客户使用。",
+        "f_status": 1,
+        "superAdmin": true,
+        "admin": false
+      }
+    ],
+    "menuList": [
+      {
+        "f_id": "AdminHome",
+        "f_name": "首页",
+        "f_route_path": "/admin/home",
+        "f_icon": "iconfont icon-shouye",
+        "f_closable": false,
+        "f_type": 2
+      },
+      {
+        "f_id": "GRZX",
+        "f_parent_id": "ROOT",
+        "f_parent_name": "系统菜单",
+        "f_parent_path": "/ROOT/",
+        "f_order": 10,
+        "children": [
+          {
+            "f_id": "GRZX-WDXX",
+            "f_parent_id": "GRZX",
+            "f_parent_name": "个人中心",
+            "f_parent_path": "/ROOT/GRZX/",
+            "f_order": 10,
+            "children": [],
+            "f_name": "我的信息",
+            "f_desc": "我的信息页面",
+            "f_icon": "iconfont icon-wodexinxi",
+            "f_type": 2,
+            "f_route_path": "/admin/profile/information",
+            "f_is_web": 101,
+            "f_is_android": 101,
+            "f_is_ios": 102,
+            "f_status": 101,
+            "f_remark": null,
+            "urlList": null,
+            "f_full_path": "/ROOT/GRZX/GRZX-WDXX/"
+          },
+          {
+            "f_id": "GRZX-JCRW",
+            "f_parent_id": "GRZX",
+            "f_parent_name": "个人中心",
+            "f_parent_path": "/ROOT/GRZX/",
+            "f_order": 20,
+            "children": [],
+            "f_name": "我的试验任务",
+            "f_desc": "我的试验任务页面",
+            "f_icon": null,
+            "f_type": 2,
+            "f_route_path": "/admin/hnjky/testing/lab/task",
+            "f_is_web": 101,
+            "f_is_android": 102,
+            "f_is_ios": 102,
+            "f_status": 101,
+            "f_remark": null,
+            "urlList": null,
+            "f_full_path": "/ROOT/GRZX/GRZX-JCRW/"
+          }
+        ],
+        "f_name": "个人中心",
+        "f_desc": "个人中心模块",
+        "f_icon": "iconfont icon-gerenzhongxin",
+        "f_type": 1,
+        "f_route_path": null,
+        "f_is_web": 101,
+        "f_is_android": 101,
+        "f_is_ios": 101,
+        "f_status": 101,
+        "f_remark": "日常工作常用功能的快捷入口。",
+        "urlList": null,
+        "f_full_path": "/ROOT/GRZX/"
+      }
+    ]
+  }
+}

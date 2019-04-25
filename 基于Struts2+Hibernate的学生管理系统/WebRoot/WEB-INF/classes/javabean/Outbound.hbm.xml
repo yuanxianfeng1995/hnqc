@@ -10,20 +10,59 @@
             <column name="id" />
             <generator class="increment" />
         </id>
+        <property name="no" type="java.lang.String">
+            <column name="no" length="100" />
+        </property>
         <property name="name" type="java.lang.String">
             <column name="name" length="45" not-null="true" />
         </property>
-        <property name="manufacturer" type="java.lang.String">
-            <column name="manufacturer" length="45" />
+        <property name="number" type="java.lang.Integer">
+            <column name="number">
+                <comment>页小计数量</comment>
+            </column>
         </property>
         <property name="price" type="java.lang.Double">
-            <column name="price" precision="22" scale="0" />
+            <column name="price" precision="22" scale="0">
+                <comment>单价</comment>
+            </column>
+        </property>
+        <property name="money" type="java.lang.Double">
+            <column name="money" precision="22" scale="0">
+                <comment>页小计金额</comment>
+            </column>
+        </property>
+        <property name="manufacturer" type="java.lang.String">
+            <column name="manufacturer" length="45">
+                <comment>单位</comment>
+            </column>
+        </property>
+        <property name="addr" type="java.lang.String">
+            <column name="addr" length="300" />
         </property>
         <property name="purchasedDate" type="java.util.Date">
             <column name="purchased_date" length="10" />
         </property>
+        <property name="making" type="java.lang.String">
+            <column name="making" length="45">
+                <comment>制单人</comment>
+            </column>
+        </property>
+        <property name="handle" type="java.lang.String">
+            <column name="Handle" length="45">
+                <comment>经手人</comment>
+            </column>
+        </property>
         <property name="remark" type="java.lang.String">
             <column name="remark" length="300" />
         </property>
+        <property name="conId" type="java.lang.Integer">
+            <column name="conID" />
+        </property>
+        <set name="commodities" inverse="true">
+            <key>
+                <column name="outboundId" />
+            </key>
+            <one-to-many class="javabean.Commodity" />
+        </set>
     </class>
 </hibernate-mapping>

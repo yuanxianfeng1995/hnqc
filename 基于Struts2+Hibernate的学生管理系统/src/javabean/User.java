@@ -1,6 +1,8 @@
 package javabean;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -11,12 +13,13 @@ public class User implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private String xuehao;
 	private String name;
 	private String sex;
 	private String age;
-	private String weight;
 	private Date birthday;
+	private String remark;
+	private String phone;
+	private Set maintains = new HashSet(0);
 
 	// Constructors
 
@@ -25,24 +28,20 @@ public class User implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public User(String xuehao, String name, String sex, String age,
-			String weight) {
-		this.xuehao = xuehao;
+	public User(String name) {
 		this.name = name;
-		this.sex = sex;
-		this.age = age;
-		this.weight = weight;
 	}
 
 	/** full constructor */
-	public User(String xuehao, String name, String sex, String age,
-			String weight, Date birthday) {
-		this.xuehao = xuehao;
+	public User(String name, String sex, String age, Date birthday,
+			String remark, String phone, Set maintains) {
 		this.name = name;
 		this.sex = sex;
 		this.age = age;
-		this.weight = weight;
 		this.birthday = birthday;
+		this.remark = remark;
+		this.phone = phone;
+		this.maintains = maintains;
 	}
 
 	// Property accessors
@@ -53,14 +52,6 @@ public class User implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getXuehao() {
-		return this.xuehao;
-	}
-
-	public void setXuehao(String xuehao) {
-		this.xuehao = xuehao;
 	}
 
 	public String getName() {
@@ -87,20 +78,36 @@ public class User implements java.io.Serializable {
 		this.age = age;
 	}
 
-	public String getWeight() {
-		return this.weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
-	}
-
 	public Date getBirthday() {
 		return this.birthday;
 	}
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+	public String getRemark() {
+		return this.remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getPhone() {
+		return this.phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Set getMaintains() {
+		return this.maintains;
+	}
+
+	public void setMaintains(Set maintains) {
+		this.maintains = maintains;
 	}
 
 }
