@@ -1,0 +1,234 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+}
+
+body {
+  font-size: 16px;
+  /*background-color: #324157;*/
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+li{
+  list-style: none;
+}
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.el-loading-mask {
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+a {
+  color: #20a0ff;
+}
+
+a:hover {
+  color: #4db3ff
+}
+
+#app {
+  height: 100%;
+}
+
+.bg-img {
+  background-image: url('~assets/img/login-bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.fa {
+  text-align: center;
+}
+
+#sideMenu .a-menu-item {
+  background-color: #2E2C32
+}
+
+#sideMenu .a-menu-item:hover {
+  background-color: #48576a;
+}
+
+#sideMenu .a-submenu__title {
+  background-color: #2E2C32
+}
+
+.jw-menu-body .a-menu-item, .a-submenu__title {
+  height: 46px;
+  line-height: 46px;
+}
+
+.ad-menu-item-text {
+  font-size: 16px;
+}
+
+.ad-menu-item-text > i {
+  font-size: 32px;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.ag-pinned-left-cols-viewport .iconfont {
+  font-size: 20px;
+}
+
+.ag-cell > a {
+  line-height: 18px;
+  display: flex;
+}
+.ag-cell.ag-cell-not-inline-editing.ag-cell-with-height.ag-cell-no-focus.ag-cell-value {
+  padding: 4px;
+}
+.ad-view-tab > .ad-card-tabs {
+  background: #D6D6D6;
+  padding-left: 10px;
+  height: 32px;
+}
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab{
+  line-height: 32px;
+}
+.ad-view-tab .a-tabs--card > .a-tabs__header {
+  margin: 0px;
+}
+
+.ad-view-tab .el-tabs--card > .a-tabs__header .a-tabs__nav-wrap {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.ad-view-tab .a-tabs--card > .a-tabs__header .a-tabs__nav-next, .ad-view-tab .a-tabs--card > .a-tabs__header .a-tabs__nav-prev {
+  line-height: 32px;
+  font-size: 14px;
+}
+.is-disabled ul + div {
+  display: none;
+}
+
+.ad-view-tab .a-tabs--card > .a-tabs__header .a-tabs__item {
+  padding: 0 8px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #C8C8C8;
+  border-right: 1px solid #d1dbe5;
+  border-radius: 0 0 0 0;
+  font-size: 14px;
+  /*font-weight: bold;*/
+}
+
+.ad-view-tab .a-tabs--card > .a-tabs__header .a-tabs__item.is-active {
+  background-color: #1D87E8;
+  border-bottom-color: #fff;
+  color: #fff;
+}
+
+.a-tabs--card > .a-tabs__header .a-tabs__item.is-active {
+  border: 1px solid #1D87E8;
+  border-bottom: 0px solid #1D87E8;
+}
+
+.ad-view-tab .is-closable {
+  color: darkslategray;
+}
+
+.ad-view-tab .ad-view-tab-body {
+  background-color: #EEEEEE;
+}
+
+.ad-view-page {
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.ad-selector > .ad-view-page {
+
+}
+
+.ad-menu-body{
+  width: auto!important;
+  height: auto!important;
+  min-height: 100%;
+}
+
+.ad-menu-item-text .anticon, .ant-menu-item .anticon{
+  font-size: 26px;
+  margin-top: 6px;
+}
+
+.anticon svg{
+  font-size: 100%;
+}
+
+.button-spin{
+  height: 100%;
+  text-align: center;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  line-height: 32px;
+}
+.ant-modal-header {
+  min-height: 50px;
+}
+.ant-tabs-bar {
+  margin: 0 0 0 0;
+}
+.ant-menu-inline-collapsed > .ant-menu-item{
+  padding: 0 17px !important;
+}
+.ant-menu-vertical  .anticon{
+  font-size: 26px!important;
+}
+
+.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title{
+  padding: 0 17px !important;
+}
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab {
+  border-radius: 0!important;
+  border: 0 solid #c8c8c8;
+  border-left: 1px solid #c8c8c8;
+  border-right: 1px solid #c8c8c8;
+}
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab-active {
+  background: #1890ff;
+  border-color: #e8e8e8;
+  color: #fff;
+  padding-bottom: 0;
+}
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-nav-container{
+  height: auto;
+}
+.ant-select-selection--multiple .ant-select-selection__choice{
+  padding: 0 20px 0 4px;
+}
+.ant-select-disabled .ant-select-selection--multiple .ant-select-selection__choice{
+  padding-right: 10px;
+  background-color: rgba(32,160,255,.1);
+  border-color: rgba(32,160,255,.2);
+  color: #20a0ff;
+}
+
+.ant-select-selection--multiple .ant-select-selection__choice{
+  background-color: rgba(32,160,255,.1);
+  border-color: rgba(32,160,255,.2);
+  color: #20a0ff;
+}
+.ant-menu-item .anticon + span, .ant-menu-submenu-title .anticon + span{
+  position: relative;
+  top: -4px;
+  color: #fff;
+}

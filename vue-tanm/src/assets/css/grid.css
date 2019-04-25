@@ -1,0 +1,236 @@
+/********************************************************************************************************************/
+/* ad-grid */
+/********************************************************************************************************************/
+.ad-grid .jw-floating-filter-cell .ant-calendar-picker-input:not(.ant-input-disabled) input{
+  width: 50%;
+}
+.ad-grid .jw-floating-filter-cell .ant-calendar-picker-input {
+  padding-right: 35px;
+}
+.ad-grid .jw-floating-filter-cell .ant-calendar-picker {
+  font-family: Arial;
+}
+.ad-grid .ag-floating-filter-full-body .ant-input-sm {
+  height: 24px!important;
+}
+
+.ad-grid {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f5f7f9;
+}
+
+.ad-grid .ag-overlay-no-rows-center {
+  background-color: #f5f7f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 6px;
+}
+/*.ad-grid .grid-body{*/
+  /*margin-bottom: -33px;*/
+  /*padding-bottom: 33px;*/
+/*}*/
+.ad-grid .ant-spin-container{
+  height: 100%;
+}
+.ad-grid .ag-paging-panel {
+  border-top: 1px solid #eee;
+}
+
+.ad-grid .ag-root {
+  border: none;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+}
+
+.ad-grid .ag-header {
+  background: #f5f7f9;
+  border-bottom: 1px solid #eee;
+}
+
+.ad-grid .ag-body {
+  background-color: #fff;
+}
+
+.ad-grid .ag-row-odd {
+  background-color: #f6f8ff;
+}
+
+.ad-grid .ag-row-selected {
+  background-color: #b0e0e6;
+}
+
+.ad-grid .ag-menu {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.ad-grid .ad-floating-filter-cell {
+  padding: 0px 1px;
+}
+
+.ad-grid .ad-floating-filter-cell .a-input {
+}
+
+.ad-grid .ad-floating-filter-cell .ad-select {
+  width: 100%;
+  min-width: 20px;
+}
+
+.ad-grid .ad-floating-filter-cell .ad-input__icon {
+  width: 30px;
+}
+
+.ad-grid .ad-floating-filter-cell .a-input__icon + .a-input__inner {
+  padding-right: 30px;
+}
+
+.ad-grid .ad-floating-filter-cell .a-tag {
+  height: 20px;
+  line-height: 20px;
+  margin: 1px 0 1px 4px;
+}
+
+.ad-grid .ad-floating-filter-cell .a-date-editor--daterange.a-input {
+  width: 100%;
+}
+
+.ad-grid .ag-floating-filter-button button {
+  border: 1px solid #d1dbe5;
+  border-left: none;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.ad-grid .ag-ltr .ag-header-group-cell {
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+
+.ad-grid .ag-ltr .ag-header-group-cell-with-group {
+  border-bottom: 1px solid #eee;
+}
+
+.ad-grid .ag-ltr .ag-header-cell {
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+
+.ad-grid .ag-ltr .ag-header-cell .ag-header-cell-label {
+  display: block;
+}
+
+.ad-grid .ag-ltr .ag-header-cell .ag-header-cell-label > span {
+  float: none;
+}
+
+.ad-grid .ag-ltr .ag-header-viewport .ag-header-cell:last-child {
+  border-right: 1px solid transparent;
+}
+
+.ad-grid .ag-ltr .ag-pinned-right-header {
+  border-left: 1px solid #eee;
+}
+
+.ad-grid .ag-ltr .ag-cell-no-focus {
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  outline-width: 0;
+}
+
+.ad-form-view .ad-grid .ag-cell .a-select .a-input__inner:hover {
+  border-bottom: none;
+}
+
+.ad-grid .ag-ltr .ag-pinned-left-cols-viewport {
+  border-right: 1px solid #eee;
+}
+
+.ad-grid .ag-ltr .ag-pinned-right-cols-viewport {
+  border-left: 1px solid #eee;
+}
+
+.ad-grid .ag-group-cell {
+  font-style: normal;
+}
+
+.ad-grid .ag-paging-panel {
+  text-align: right;
+}
+
+.ad-grid .ag-paging-row-summary-panel {
+  width: auto;
+  margin-right: 20px;
+}
+/********************************************************************************************************************/
+/* button */
+/********************************************************************************************************************/
+.ad-button-group .ant-btn-primary{
+  color: #1890ff;
+  background-color: #EEF1F6;
+  border-color:  #EEF1F6;
+}
+.ad-button-group .ant-btn-primary:hover{
+  background: #4db3ff;
+  color: #fff;
+  border-color:  #4db3ff;
+}
+.ad-button-group
+.ad-button-group .ant-btn-group .ant-btn-primary:first-child:not(:last-child) {
+  border-right-color: #fff;
+  border-left-color: #fff;
+}
+.ad-button-group .ant-btn-group .ant-btn-primary:not(:first-child):not(:last-child) {
+  border-right-color: #fff;
+  border-left-color: #fff;
+}
+
+.ad-button-group .ant-btn-group .ant-btn-primary:last-child:not(:first-child), .ant-btn-group .ant-btn-primary + .ant-btn-primary{
+  border-right-color: #fff !important;
+  border-left-color: #fff !important;
+}
+
+.ad-button-group .ant-btn.disabled, .ant-btn[disabled], .ant-btn.disabled:hover, .ant-btn[disabled]:hover, .ant-btn.disabled:focus, .ant-btn[disabled]:focus, .ant-btn.disabled:active, .ant-btn[disabled]:active, .ant-btn.disabled.active, .ant-btn[disabled].active{
+  color: #bfcbd9;
+  background-color: #eef1f6 !important;
+  cursor: not-allowed;
+  border-color: #eef1f6;
+  border-left-color: #fff;
+}
+
+.ant-btn-group .ant-btn-primary + .ant-btn:not(.ant-btn-primary):not([disabled]){
+  border: none;
+}
+.ag-body-viewport-wrapper.ag-layout-auto-height, .ag-body-viewport-wrapper.ag-layout-normal {
+  overflow: hidden;
+}
+
+.ag-fresh .ag-ltr .ag-group-expanded {
+  padding-right: 4px;
+}
+
+.ag-fresh .ag-ltr .ag-group-contracted {
+  padding-right: 4px;
+}
+
+.ag-fresh .ag-cell-not-inline-editing {
+  padding: 3px;
+  padding-left: 1px;
+}
+
+.ag-fresh .ag-header-cell {
+  padding: 2px;
+  padding-top: 4px;
+}
+
+.ag-fresh {
+  line-height: 1.4;
+}
+
+.ag-header-cell .jw-floating-filter-cell {
+  max-height: 32px;
+  overflow: hidden;
+}

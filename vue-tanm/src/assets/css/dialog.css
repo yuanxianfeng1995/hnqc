@@ -1,0 +1,89 @@
+/********************************************************************************************************************/
+/* jy-dialog */
+/********************************************************************************************************************/
+.jy-dialog {
+  border-radius: 6px;
+}
+
+.jy-dialog.el-dialog--full {
+  /*top: 0px;*/
+  /*width: 100%;*/
+  /*border: none;*/
+  border-radius: 0;
+}
+
+.jy-dialog .el-dialog__header {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.jy-dialog .el-dialog__body {
+  padding: 0;
+}
+
+.jy-dialog .el-dialog__footer {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.jy-dialog .jy-dialog-body {
+  min-height: 76px;
+  overflow-y: auto;
+}
+
+.jy-dialog .jy-dialog-footer {
+
+}
+
+.jy-dialog .jw-grid .ant-select-dropdown, .ant-tooltip {
+  z-index: 9999;
+}
+
+/********************************************************************************************************************/
+/* ad-dialog */
+/********************************************************************************************************************/
+.ad-dialog.ad-dialog--full {
+  /*top: 0px;*/
+  /*width: 100%;*/
+  /*border: none;*/
+  border-radius: 0;
+}
+
+.ad-dialog .ant-modal-content {
+  border-radius: 6px;
+}
+
+.ad-dialog .ant-modal-header {
+  background-color: #f1f1f1;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.ad-dialog .ant-modal-body {
+  padding: 0;
+}
+
+.ad-dialog .ant-modal-header, .ad-dialog .ant-modal-footer {
+  border-bottom: none;
+}
+
+.ad-dialog .ant-modal-footer {
+  background-color: #f1f1f1;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.ad-dialog-body {
+  min-height: 76px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.ad-dialog-footer {
+
+}
+
+.ad-dialog .ad-grid .ant-select-dropdown, .ant-tooltip {
+  z-index: 9999;
+}
