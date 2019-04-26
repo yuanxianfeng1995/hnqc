@@ -27,21 +27,6 @@ import org.json.JSONObject;
  
  public class CommodityAction extends ActionSupport
  {
-   public static Commodity Commodity(String name, String manufacturer, Double price, Date purchasedDate, String remark, Integer number, String no, Double money)
-   {
-     Commodity a = new Commodity();
-     a.setNo(no);
-     a.setBillentry(null);
-     a.setOutbound(null);
-     a.setManufacturer(manufacturer);
-     a.setName(name);
-     a.setNumber(number);
-     a.setPrice(price);
-     a.setMoney(money);
-     a.setPurchasedDate(purchasedDate);
-     a.setRemark(remark);
-    return a;
-   }
    /**
 	 * @param args
 	 */
@@ -83,8 +68,8 @@ import org.json.JSONObject;
    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
       Date date = sdf.parse("2018-02-04");  
      // Commodity(String name, String manufacturer, Double price, Date purchasedDate, String remark, Integer number, String no, Double money)
-      Commodity a= Commodity("name", "manufacturer", 15.2,date,"remark", 1, "no", 222.2);
-        session.save(a);
+//      Commodity a= Commodity("name", "manufacturer", 15.2,date,"remark", 1, "no", 222.2);
+//        session.save(a);
    		
    	    // 提交事务
    	    transaction.commit();  
@@ -121,11 +106,13 @@ import org.json.JSONObject;
            String a = like.split("&")[1];
           value = a.split("=")[1];
            name = a.split("=")[0];
+           System.out.println("name _like不存在---------"+name);
            json = cabku.query_Commodity("from Commodity where " + name + "=?", value);
          } else {
            String[] like = items[(items.length - 1)].split("_like");
            name = like[0].split("&")[1];
            value = like[(like.length - 1)].split("=")[1];
+           System.out.println("name _like存在---------"+name);
            json = cabku.list_Commodity("from Commodity where " + name + " like ?1", value);
          }
        } else {
@@ -139,8 +126,9 @@ import org.json.JSONObject;
        System.out.println("json2 ---"+json2);
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        Date date = sdf.parse(json2.getString("purchasedDate"));  
-       Commodity a = Commodity(json2.getString("name"), json2.getString("manufacturer"), json2.getDouble("price"), date, json2.getString("remark"), json2.getInt("number"), json2.getString("no"), json2.getDouble("money"));
-       JSONObject json = cabku.addCommodity(a);
+       Commodity a =new Commodity(null,null,json2.getString("no"),json2.getString("name"), 
+    		   json2.getInt("number"),json2.getDouble("price"),json2.getDouble("money"),json2.getString("manufacturer"),date,json2.getString("remark"));
+      JSONObject json = cabku.addCommodity(a);
        out.println(json);
      } else if (method.equals("PUT")) {
        Unit unit = new Unit();
@@ -148,7 +136,8 @@ import org.json.JSONObject;
        JSONObject json2 = new JSONObject(str);
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        Date date = sdf.parse(json2.getString("purchasedDate"));
-       Commodity a = Commodity(json2.getString("name"), json2.getString("manufacturer"), json2.getDouble("price"), date, json2.getString("remark"), json2.getInt("number"), json2.getString("no"), json2.getDouble("money"));
+       Commodity a =new Commodity(null,null,json2.getString("no"),json2.getString("name"), 
+    		   json2.getInt("number"),json2.getDouble("price"),json2.getDouble("money"),json2.getString("manufacturer"),date,json2.getString("remark"));
        if ((queryString != null) || (queryString != "")) {
          a.setId(Integer.valueOf(Integer.parseInt(queryString)));
        }

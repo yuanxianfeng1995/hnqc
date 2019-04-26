@@ -55,9 +55,6 @@
         <property name="remark" type="java.lang.String">
             <column name="remark" length="300" />
         </property>
-        <property name="conId" type="java.lang.Integer">
-            <column name="conID" />
-        </property>
         <set name="commodities" inverse="true">
             <key>
                 <column name="outboundId" />

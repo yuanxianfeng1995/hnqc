@@ -101,7 +101,7 @@
   <div class="jw-header">
     <div style="width: 100%">
       <div style="min-width: 500px;margin: auto 0;">
-        <h2 style="margin: 10px 0px;padding-left: 5%;color: #333;">宏能汽车</h2>
+        <!--<h2 style="margin: 10px 0px;padding-left: 5%;color: #333;">宏能汽车</h2>-->
       </div>
     </div>
     <div style="padding: 6px; min-width: 250px" class="jw-head-item_box">

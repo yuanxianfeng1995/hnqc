@@ -85,7 +85,7 @@
       <template>
         <!-- 左部 -->
         <div slot="left" style="height: 100%">
-          <h2 style="margin: 10px 0px;text-align: center;color: #fff;">宏能汽车</h2>
+          <!--<h2 style="margin: 10px 0px;text-align: center;color: #fff;">宏能汽车</h2>-->
           <div id="sideMenu" class="ad-menu ad-side-menu" style="height: 100%;background-color: #2e2c32;">
             <el-menu class="jw-menu-body jw-side-menu-body jw-menu-item-text"  :default-openeds="['1-1','1-2']" theme="dark" :collapse="collapseMenu">
                 <el-submenu index="1-1">

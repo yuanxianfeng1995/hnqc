@@ -1,38 +1,25 @@
  package action;
  
  import com.opensymphony.xwork2.ActionSupport;
- import dao.Canku;
+
+
+import dao.Canku;
  import dao.Unit;
- import java.io.PrintStream;
  import java.io.PrintWriter;
  import java.net.URLDecoder;
- import java.sql.Timestamp;
  import java.text.SimpleDateFormat;
  import java.util.Date;
  import javabean.Outbound;
+
+
  import javax.servlet.http.HttpServletRequest;
  import javax.servlet.http.HttpServletResponse;
  import org.apache.struts2.ServletActionContext;
- import org.json.JSONObject;
+import org.json.JSONObject;
  
  
  public class OutboundAction extends ActionSupport
  {
-   public Outbound outbound(String name, String manufacturer, Double price, Date purchasedDate, String remark, Integer number, String no, Double money, String addr)
-   {
-     Outbound a = new Outbound();
-     a.setManufacturer(manufacturer);
-     a.setName(name);
-     a.setPrice(price);
-     a.setPurchasedDate((Timestamp)purchasedDate);
-     a.setNumber(number);
-     a.setRemark(remark);
-    a.setNo(no);
-    a.setAddr(addr);
-    a.setMoney(money);
-    return a;
-   }
-   
    public void write()
      throws Exception
    {
@@ -75,9 +62,13 @@
        Unit unit = new Unit();
        String str = unit.getRequestPayload(request);
        JSONObject json2 = new JSONObject(str);
+       System.out.println("json2 ---"+json2);
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-       Date date = sdf.parse(json2.getString("purchasedDate"));       Outbound a = outbound(json2.getString("name"), json2.getString("manufacturer"), Double.valueOf(json2.getDouble("price")), (Timestamp)date, json2.getString("remark"), Integer.valueOf(json2.getInt("number")), json2.getString("no"), Double.valueOf(json2.getDouble("money")), json2.getString("addr"));
-       JSONObject json = cabku.addOutbound(a);
+       Date date = sdf.parse(json2.getString("purchasedDate"));  
+       Outbound a =new Outbound(json2.getString("no"),json2.getString("name"),json2.getInt("number"),json2.getDouble("price"),
+    		   json2.getDouble("money"),json2.getString("manufacturer"),json2.getString("addr"),date,json2.getString("making"),
+    		   json2.getString("handle"),json2.getString("remark"),null);
+      JSONObject json = cabku.addOutbound(a);
        out.println(json);
      } else if (method.equals("PUT")) {
        Unit unit = new Unit();
@@ -85,8 +76,10 @@
        JSONObject json2 = new JSONObject(str);
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        Date date = sdf.parse(json2.getString("purchasedDate"));
-       Outbound a = outbound(json2.getString("name"), json2.getString("manufacturer"), Double.valueOf(json2.getDouble("price")), (Timestamp)date, json2.getString("remark"), Integer.valueOf(json2.getInt("number")), json2.getString("no"), Double.valueOf(json2.getDouble("money")), json2.getString("addr"));
-       if ((queryString != null) || (queryString != "")) {
+       Outbound a =new Outbound(json2.getString("no"),json2.getString("name"),json2.getInt("number"),json2.getDouble("price"),
+    		   json2.getDouble("money"),json2.getString("manufacturer"),json2.getString("addr"),date,json2.getString("making"),
+    		   json2.getString("handle"),json2.getString("remark"),null);
+        if ((queryString != null) || (queryString != "")) {
          a.setId(Integer.valueOf(Integer.parseInt(queryString)));
        }
        JSONObject json3 = new JSONObject(a);

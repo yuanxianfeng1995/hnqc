@@ -3,12 +3,15 @@
  import daoImpi.CangkuImpi;
  import java.io.PrintStream;
  import java.util.List;
+import java.util.Set;
+
+import javabean.Commodity;
  import javabean.HibernateSessionFactory;
  import javabean.Outbound;
  import org.hibernate.Query;
  import org.hibernate.Session;
  import org.hibernate.Transaction;
- import org.json.JSONObject;
+import org.json.JSONObject;
  
  public  class Canku
  {
@@ -16,19 +19,19 @@
    private Transaction transaction;
    private Query query;
    private List<Outbound> list;
-   
+
    public JSONObject query_Outbound(String sql)
    {
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      Unit unit = new Unit();
      JSONObject json = null;
      try {
-       this.query = this.session.createQuery(sql);
-       this.list = this.query.list();
-       json = unit.jsonListSucces(this.list);
-       this.transaction.commit();
-       this.session.close();
+       query = session.createQuery(sql);
+       list = query.list();
+       json = unit.jsonListSucces(list);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -40,17 +43,17 @@
    
    public JSONObject list_Outbound(String sql, String value)
    {
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      Unit unit = new Unit();
      JSONObject json = null;
      try {
-      this.query = this.session.createQuery(sql);
-       this.query.setString("1", "%" + value + "%");
-       this.list = this.query.list();
-       json = unit.jsonListSucces(this.list);
-       this.transaction.commit();
-       this.session.close();
+      query = session.createQuery(sql);
+       query.setString("1", "%" + value + "%");
+       list = query.list();
+       json = unit.jsonListSucces(list);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -62,20 +65,22 @@
    
    public JSONObject query_Outbound(String sql, String value)
    {
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      JSONObject json = null;
      Unit unit = new Unit();
      try {
-       this.query = this.session.createQuery(sql);
-       this.query.setString(0, value);
-       Outbound tbUser = (Outbound)this.query.uniqueResult();
+       query = session.createQuery(sql);
+       query.setString(0, value);
+       Outbound tbUser = (Outbound)query.uniqueResult();
        JSONObject json2 = new JSONObject(tbUser);
+       Set<Commodity> commodity = tbUser.getCommodities();
+       json2.put("equipmentDetailList", commodity);
        System.out.println(json2);
        json = unit.jsonSucces();
        json.put("data", json2);
-       this.transaction.commit();
-       this.session.close();
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -85,18 +90,19 @@
      return json;
    }
    
-   public JSONObject addOutbound(Outbound outbound)
+   public JSONObject addOutbound(Outbound Outbound)
    {
      Unit unit = new Unit();
      JSONObject json = new JSONObject();
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
+     System.out.println("addOutbound ---"+Outbound);
      try {
-       this.session.save(outbound);
+       session.save(Outbound);
        json = unit.jsonSucces();
-       json.put("data", outbound);
-       this.transaction.commit();
-       this.session.close();
+       json.put("data", Outbound);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -107,18 +113,18 @@
      return json;
    }
    
-   public JSONObject update(Outbound outbound)
+   public JSONObject update(Outbound Outbound)
    {
      Unit unit = new Unit();
      JSONObject json = new JSONObject();
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      try {
-       this.session.update(outbound);
+       session.update(Outbound);
        json = unit.jsonSucces();
-       json.put("data", outbound);
-       this.transaction.commit();
-       this.session.close();
+       json.put("data", Outbound);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -133,17 +139,17 @@
    {
      Unit unit = new Unit();
      JSONObject json = new JSONObject();
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      try {
        Outbound s = new Outbound();
        System.out.println(id);
-       s = (Outbound)this.session.get(Outbound.class, Integer.valueOf(id));
-       this.session.delete(s);
+       s = (Outbound)session.get(Outbound.class, Integer.valueOf(id));
+       session.delete(s);
        json = unit.jsonSucces();
        json.put("data", s);
-       this.transaction.commit();
-       this.session.close();
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();

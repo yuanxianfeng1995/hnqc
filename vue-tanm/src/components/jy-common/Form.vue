@@ -96,6 +96,7 @@
         this.$emit('close')
       },
       _loadEntity () {
+        console.log("_loadEntity")
         if (this.options.operation === 'add') {
           if (this.options.createEntity) {
             this.options.createEntity.call(this, this.options, (entity) => {
@@ -185,7 +186,7 @@
               this._submitted({success: true, data: this.entity}).then(() => resolve()).catch(e => reject(e))
               return
             }
-            console.log(this.entity)
+            console.log("onSubmit",this.entity)
             let p = null
             let subUrl = this.options.context.param ? ('/' + this.options.context.param) : ''
             let cfg = {params: this.options.queryString}

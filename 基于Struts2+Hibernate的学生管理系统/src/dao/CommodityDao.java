@@ -16,7 +16,7 @@
    private Transaction transaction;
    private Query query;
    private List<Commodity> list;
-   
+
    public JSONObject query_Commodity(String sql)
    {
      session = HibernateSessionFactory.getSession();

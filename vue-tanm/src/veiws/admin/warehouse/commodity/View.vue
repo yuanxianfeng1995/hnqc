@@ -1,33 +1,23 @@
 <template>
   <div class="jw-view-page">
     <jw-grid ref="grid" :grid-options="gridOptions">
-      <equipment-detail ref="detail" :detail-options="detailOptions"></equipment-detail>
+      <!--<jy-dialog ref="mbDialog">-->
+        <!--<outbound-mb ref="mb" :mode="'dialog'"></outbound-mb>-->
+      <!--</jy-dialog>-->
+      <detail ref="detail" :detail-options="detailOptions"></detail>
     </jw-grid>
-    <div id="printJS-iframe">
-      <h2>出库单</h2>
-      <div>
-        <span style="width: 250px">设备名称:{{prints.name}}</span><span style="width: 250px">厂家:{{prints.manufacturer}}</span>
-      </div>
-      <div>
-        <span style="width: 250px">价格(元):{{prints.price}}</span>
-        <span style="width: 250px">出库日期:{{$moment(prints.purchasedDate).format('YYYY年MM月DD日')}}</span>
-      </div>
-      <div>
-        <p>备注:{{prints.remark}}</p>
-      </div>
-    </div>
   </div>
 </template>
 
 
 <script>
   import {ViewlMixin} from 'mixins'
-  import printJS from 'print-js'
   export default {
-    name: 'outboundView',
+    name: 'commodityView',
     mixins: [ViewlMixin],
     components: {
-      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'outbound'),
+      Detail: r => require.ensure([], () => r(require('./Detail')), 'warehouse-commodity'),
+      OutboundMb: r => require.ensure([], () => r(require('./Mb')), 'warehouse-commodity')
     },
     data () {
       return {
@@ -130,17 +120,18 @@
           }, {
             id: 'print',
             onClick (params, entity) {
-               params.context.featureComponent.prints = entity
-              setTimeout(() => {
-                printJS({ printable: 'printJS-iframe', type: 'html',
-                  scanStyles: false,
-                  style: '#printJS-iframe{width: 600px;margin: 0 auto;font-size: 18px;}#printJS-iframe header{\n' +
-                    '  text-align: center;}#printJS-iframe>div>span{  display: inline-block;\n' +
-                    '  width: 250px;margin-right: 30px;height: 40px;\n' +
-                    '  line-height: 40px;overflow: hidden;}#printJS-iframe h2 {\n' +
-                    '  text-align: center;}'
-                })
-              },600)
+              let vm = params.context.featureComponent
+              vm.$refs['mbDialog'].open({title: '打印商品信息'})
+              // setTimeout(() => {
+              //   printJS({ printable: 'printJS-iframe', type: 'html',
+              //     scanStyles: false,
+              //     style: '#printJS-iframe{width: 600px;margin: 0 auto;font-size: 18px;}#printJS-iframe header{\n' +
+              //       '  text-align: center;}#printJS-iframe>div>span{  display: inline-block;\n' +
+              //       '  width: 250px;margin-right: 30px;height: 40px;\n' +
+              //       '  line-height: 40px;overflow: hidden;}#printJS-iframe h2 {\n' +
+              //       '  text-align: center;}'
+              //   })
+              // },600)
             }
           }, {
             id: 'remove',

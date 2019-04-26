@@ -24,15 +24,15 @@
         <el-date-picker v-model="entity.purchasedDate"/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="制单人" prop="making">
-        <el-input-number v-model="entity.making" disabled/>
+        <el-input v-model="entity.making" disabled/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="经手人" prop="Handle">
-        <el-input-number v-model="entity.Handle" disabled/>
+        <el-input v-model="entity.Handle" disabled/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-2" label="备注" prop="remark">
         <el-input v-model="entity.remark" type="textarea" :autosize="{maxRows: 6}"/>
       </el-form-item>
-      <el-form-item class="jw-field jw-field-4" label="商品列表"  prop="f_lendApply">
+      <el-form-item class="jw-field jw-field-4" label="商品列表"  prop="lendApply">
         <jw-grid ref="grid" style="height: 320px;" :grid-options="gridOptions" >
         </jw-grid>
       </el-form-item>
@@ -40,7 +40,7 @@
 
     <template slot="other" >
       <jy-selector-dialog ref="selector" :selector-options="{name: '模板列表', selectedFn: rows => this.onSelected(rows)}">
-        <commodity-view ref="lendapplyView" :mode="'selector'" :multiple="true" :view-options="orderViewOptions"></commodity-view>
+        <commodity-view ref="lendapplyView" :mode="'selector'" :multiple="true"></commodity-view>
       </jy-selector-dialog>
     </template>
   </jy-form-dialog>
@@ -96,7 +96,7 @@
           },
           loadRemoteEntity (options, cb) {
             let vm = options.context.detailComponent
-            this.$http.get(options.context.url + '?' + options.params.f_id).then((response) => {
+            this.$http.get(options.context.url + '?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + options.params.id).then((response) => {
               let entity = response.body.success ? response.body.data : {}
               cb(entity)
               vm.$refs['grid'].setData(entity.equipmentDetailList)
@@ -148,23 +148,22 @@
         headerName: '数量',
         field: 'number',
         type: ['NumberRender'],
-        width: 120
+        width: 80
       }, {
         headerName: '单价',
         field: 'price',
         type: ['NumberRender'],
-        width: 120
+        width: 80
       }, {
         headerName: '金额',
         field: 'money',
         type: ['NumberRender'],
-        width: 120
+        width: 80
       }, {
         headerName: '备注',
         field: 'remark',
         tooltipField: 'remark',
-        width: 150,
-        suppressSizeToFit: false
+        width: 150
       }, {
         hide: this.mode === 'selector',
         type: 'OperationRender',
@@ -187,8 +186,8 @@
       }]
     },
     computed: {
-      getmoney () {
-        return this.entity.price * this.entity.number
+      getmoney: function () {
+        return 0
       }
     }
     ,
@@ -198,33 +197,26 @@
       },
       onSelected (selectedRows, cb) {
         selectedRows.forEach((selectedTemplate) => {
+          console.log('selectedTemplate----', selectedTemplate)
           let exist = false
           if (this.entity.equipmentDetailList.length > 0) {
             exist = this.entity.equipmentDetailList.some((template) => {
-              return template.f_id === selectedTemplate.f_id
+              return template.id === selectedTemplate.id
             })
           } else {
             this.entity.equipmentDetailList = []
           }
           if (!exist) {
             this.entity.equipmentDetailList.push({
-              f_id: selectedTemplate.f_id,
-              f_equipment_id: selectedTemplate.f_equipment_id,
-              f_apply_id: selectedTemplate.f_apply_id,
-              f_apply_no: selectedTemplate.f_apply_no,
-              f_equipment_no: selectedTemplate.f_equipment_no,
-              f_equipment_name: selectedTemplate.f_equipment_name,
-              f_borrower: selectedTemplate.f_borrower,
-              f_depositary: selectedTemplate.f_depositary,
-              f_project_name: '',
-              f_restitute_expect_date: selectedTemplate.f_restitute_expect_date || '',
-              f_restitute_state: 101,
-              f_lend_state: selectedTemplate.f_lend_status || 101,
-              f_status: 101,
-              f_remark: ' '
-            })
-            this.orderViewOptions.gridOptions.context.params.f_id.push({
-              f_id: selectedTemplate.f_id
+              id: selectedTemplate.id,
+              no: selectedTemplate.no,
+              name: selectedTemplate.name,
+              number: selectedTemplate.number,
+              price: selectedTemplate.price,
+              money: selectedTemplate.money,
+              manufacturer: selectedTemplate.manufacturer,
+              purchased_date: selectedTemplate.purchased_date,
+              remark: ''
             })
           }
         })
@@ -233,7 +225,7 @@
       },
       onRemoveItem (entity) {
         for (let i = 0; i < this.entity.equipmentDetailList.length; i++) {
-          if (this.entity.equipmentDetailList[i].f_id === entity.f_id) {
+          if (this.entity.equipmentDetailList[i].id === entity.id) {
             this.entity.equipmentDetailList.splice(i, 1)
             break
           }

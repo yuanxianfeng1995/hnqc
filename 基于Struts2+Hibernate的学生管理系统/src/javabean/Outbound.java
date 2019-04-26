@@ -24,7 +24,6 @@ public class Outbound implements java.io.Serializable {
 	private String making;
 	private String handle;
 	private String remark;
-	private Integer conId;
 	private Set commodities = new HashSet(0);
 
 	// Constructors
@@ -41,8 +40,7 @@ public class Outbound implements java.io.Serializable {
 	/** full constructor */
 	public Outbound(String no, String name, Integer number, Double price,
 			Double money, String manufacturer, String addr, Date purchasedDate,
-			String making, String handle, String remark, Integer conId,
-			Set commodities) {
+			String making, String handle, String remark, Set commodities) {
 		this.no = no;
 		this.name = name;
 		this.number = number;
@@ -54,7 +52,6 @@ public class Outbound implements java.io.Serializable {
 		this.making = making;
 		this.handle = handle;
 		this.remark = remark;
-		this.conId = conId;
 		this.commodities = commodities;
 	}
 
@@ -154,14 +151,6 @@ public class Outbound implements java.io.Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-
-	public Integer getConId() {
-		return this.conId;
-	}
-
-	public void setConId(Integer conId) {
-		this.conId = conId;
 	}
 
 	public Set getCommodities() {
