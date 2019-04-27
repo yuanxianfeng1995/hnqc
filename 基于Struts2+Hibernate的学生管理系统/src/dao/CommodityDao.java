@@ -8,7 +8,7 @@
  import org.hibernate.Query;
  import org.hibernate.Session;
  import org.hibernate.Transaction;
- import org.json.JSONObject;
+import org.json.JSONObject;
  
  public  class CommodityDao
  {
@@ -24,11 +24,17 @@
      Unit unit = new Unit();
      JSONObject json = null;
      try {
-       query = session.createQuery(sql);
-       list = query.list();
-       json = unit.jsonListSucces(list);
-       transaction.commit();
-       session.close();
+    	  query = session.createQuery(sql);
+          query.setFetchSize(0);
+          query.setMaxResults(30);
+          list = query.list();
+          Query query2 = session.createQuery("select count(*) "+sql);
+          Object obj=query2.uniqueResult();
+          Long lobj=(Long)obj;
+          int count=lobj.intValue();
+          json = unit.jsonListSucces(list,count);
+          transaction.commit();
+          session.close();
      }
      catch (Exception e) {
        e.printStackTrace();

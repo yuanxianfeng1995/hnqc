@@ -1,7 +1,6 @@
 <template>
   <div class="jw-view-page">
     <jw-grid ref="grid" :grid-options="gridOptions">
-      <outbound-mb ref="mb" :mode="'dialog'" :view-options="equipmentSuspendViewOptions"></outbound-mb>
       <detail ref="detail" :detail-options="detailOptions"></detail>
     </jw-grid>
   </div>
@@ -14,8 +13,7 @@
     name: 'commodityView',
     mixins: [ViewlMixin],
     components: {
-      Detail: r => require.ensure([], () => r(require('./Detail')), 'warehouse-commodity'),
-      OutboundMb: r => require.ensure([], () => r(require('./commodityMd')), 'warehouse-commodity')
+      Detail: r => require.ensure([], () => r(require('./Detail')), 'warehouse-commodity')
     },
     data () {
       return {
@@ -24,15 +22,6 @@
             featureComponent: this,
             getGridComponent (options) {
               return options.context.featureComponent.$refs['grid']
-            }
-          }
-        },
-        equipmentSuspendViewOptions: {
-          gridOptions: {
-            context: {
-              params: {
-                id: null
-              }
             }
           }
         },
@@ -123,16 +112,6 @@
           operations: [{
             id: 'edit',
             permission: 'edit'
-          }, {
-            id: 'print',
-            onClick (params, entity) {
-              let vm = params.context.featureComponent
-              vm.$refs['mb'].open(
-                {
-                  params: {prints:entity}
-                }
-              )
-            }
           }, {
             id: 'remove',
             permission: 'remove'

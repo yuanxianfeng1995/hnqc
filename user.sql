@@ -42,16 +42,17 @@ CREATE TABLE `billentry` (
   `money` double DEFAULT NULL COMMENT '页小计金额',
   `manufacturer` varchar(45) DEFAULT NULL COMMENT '单位',
   `addr` varchar(300) DEFAULT NULL,
-  `purchased_date` date DEFAULT NULL,
+  `purchasedDate` date DEFAULT NULL,
   `making` varchar(45) DEFAULT NULL COMMENT '制单人',
   `Handle` varchar(45) DEFAULT NULL COMMENT '经手人',
   `remark` varchar(300) DEFAULT NULL,
-  `conID` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `commo` (`conID`)
+  `commodityId` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `billentry` */
+
+insert  into `billentry`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`addr`,`purchasedDate`,`making`,`Handle`,`remark`,`commodityId`) values (1,'asdaaaaa','asd',0,1,0,'asd','ad','2019-04-27','asd','asd','ads',NULL);
 
 /*Table structure for table `commodity` */
 
@@ -67,18 +68,12 @@ CREATE TABLE `commodity` (
   `manufacturer` varchar(45) DEFAULT NULL,
   `purchased_date` date DEFAULT NULL,
   `remark` varchar(300) DEFAULT NULL,
-  `billentryId` int(11) unsigned DEFAULT NULL,
-  `outboundId` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `bullentry` (`billentryId`),
-  KEY `outbound` (`outboundId`),
-  CONSTRAINT `bullentry` FOREIGN KEY (`billentryId`) REFERENCES `billentry` (`id`),
-  CONSTRAINT `outbound` FOREIGN KEY (`outboundId`) REFERENCES `outbound` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `commodity` */
 
-insert  into `commodity`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`purchased_date`,`remark`,`billentryId`,`outboundId`) values (1,'2','asd',21,1,21,'撒的',NULL,NULL,NULL,NULL),(2,'no','name',1,15.2,NULL,'manufacturer','2018-02-04','remark',NULL,NULL),(3,'ad','ad',0,0,NULL,'爱迪生','2019-04-25','阿萨德',NULL,NULL),(4,'爱迪生','阿萨德',0,0,NULL,'撒的','2019-04-25','',NULL,NULL),(5,'1','11',1,0,NULL,'1','2019-04-25','1',NULL,NULL);
+insert  into `commodity`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`purchased_date`,`remark`) values (1,'xas','阿萨德',212,213,23123,'啊实打实的','2019-04-27','奥术大师大所大声道'),(2,'xdsd','czdsa',312,342,435345,'啊实打实的','2019-04-27','春风骀荡多多多多多多');
 
 /*Table structure for table `maintain` */
 
@@ -111,18 +106,17 @@ CREATE TABLE `outbound` (
   `money` double DEFAULT NULL COMMENT '页小计金额',
   `manufacturer` varchar(45) DEFAULT NULL COMMENT '单位',
   `addr` varchar(300) DEFAULT NULL,
-  `purchased_date` date DEFAULT NULL,
+  `purchasedDate` date DEFAULT NULL,
   `making` varchar(45) DEFAULT NULL COMMENT '制单人',
   `Handle` varchar(45) DEFAULT NULL COMMENT '经手人',
   `remark` varchar(300) DEFAULT NULL,
-  `conID` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `commodity` (`conID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `commodityId` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 /*Data for the table `outbound` */
 
-insert  into `outbound`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`addr`,`purchased_date`,`making`,`Handle`,`remark`,`conID`) values (1,'xsf','正则',12,2,24,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `outbound`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`addr`,`purchasedDate`,`making`,`Handle`,`remark`,`commodityId`) values (1,'x0011111','先锋',0,1,0,'史蒂夫大幅度','153131564长沙','2019-04-27','小升初','初学者','',NULL),(2,'asd','先锋2',524,1,458468,'xz','asd','2019-04-27','asd','asd','asdasda','1,2'),(3,'ads','asdads',524,1,458468,'asd','asd','2019-04-27','','asd','sad','1,2');
 
 /*Table structure for table `student` */
 

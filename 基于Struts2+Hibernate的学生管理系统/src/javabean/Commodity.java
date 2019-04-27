@@ -11,13 +11,11 @@ public class Commodity implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Billentry billentry;
-	private Outbound outbound;
 	private String no;
 	private String name;
 	private Integer number;
-	private Double price;
-	private Double money;
+	private double price;
+	private double money;
 	private String manufacturer;
 	private Date purchasedDate;
 	private String remark;
@@ -34,11 +32,8 @@ public class Commodity implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Commodity(Billentry billentry, Outbound outbound, String no,
-			String name, Integer number, Double price, Double money,
-			String manufacturer, Date purchasedDate, String remark) {
-		this.billentry = billentry;
-		this.outbound = outbound;
+	public Commodity(String no, String name, Integer number, double price,
+			double money, String manufacturer, Date purchasedDate, String remark) {
 		this.no = no;
 		this.name = name;
 		this.number = number;
@@ -57,22 +52,6 @@ public class Commodity implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Billentry getBillentry() {
-		return this.billentry;
-	}
-
-	public void setBillentry(Billentry billentry) {
-		this.billentry = billentry;
-	}
-
-	public Outbound getOutbound() {
-		return this.outbound;
-	}
-
-	public void setOutbound(Outbound outbound) {
-		this.outbound = outbound;
 	}
 
 	public String getNo() {
@@ -99,19 +78,19 @@ public class Commodity implements java.io.Serializable {
 		this.number = number;
 	}
 
-	public Double getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public Double getMoney() {
+	public double getMoney() {
 		return this.money;
 	}
 
-	public void setMoney(Double money) {
+	public void setMoney(double money) {
 		this.money = money;
 	}
 

@@ -10,7 +10,7 @@
       <el-form-item class="jw-field jw-field-1" label="销货单位" prop="manufacturer">
         <el-input v-model="entity.manufacturer"/>
       </el-form-item>
-      <el-form-item class="jw-field jw-field-1" label="地址" prop="addr">
+      <el-form-item class="jw-field jw-field-1" label="地址电话" prop="addr">
         <el-input v-model="entity.addr"/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="总计数量" prop="number">
@@ -191,11 +191,14 @@
       money: {
         get: function () {
           let money = 0;
-          if(this.entity.equipmentDetailList && this.entity.equipmentDetailList.length > 0){
-            this.entity.equipmentDetailList.forEach(function(equipment) {
-              money= money + equipment.money
-            })
+          if(this.entity.equipmentDetailList){
+            if(this.entity.equipmentDetailList.length > 0){
+              this.entity.equipmentDetailList.forEach(function(equipment) {
+                money= money + equipment.money
+              })
+            }
           }
+          this.entity.money = money
           return money
         },
         // setter
@@ -205,11 +208,14 @@
       count: {
         get: function () {
           let count = 0;
-          if(this.entity.equipmentDetailList && this.entity.equipmentDetailList.length > 0){
-            this.entity.equipmentDetailList.forEach(function(equipment) {
-              count= count + equipment.number
-            })
+          if(this.entity.equipmentDetailList){
+            if(this.entity.equipmentDetailList.length > 0){
+              this.entity.equipmentDetailList.forEach(function(equipment) {
+                count= count + equipment.number
+              })
+            }
           }
+          this.entity.number = count
           return count
         },
         // setter

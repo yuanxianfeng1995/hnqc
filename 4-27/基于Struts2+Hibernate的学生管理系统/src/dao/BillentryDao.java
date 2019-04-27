@@ -1,34 +1,41 @@
  package dao;
- 
+
  import daoImpi.CangkuImpi;
  import java.io.PrintStream;
+import java.util.HashSet;
  import java.util.List;
+import java.util.Set;
+
+import javabean.Commodity;
  import javabean.HibernateSessionFactory;
  import javabean.Billentry;
  import org.hibernate.Query;
  import org.hibernate.Session;
  import org.hibernate.Transaction;
- import org.json.JSONObject;
- 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
  public  class BillentryDao
  {
    private Session session;
    private Transaction transaction;
    private Query query;
    private List<Billentry> list;
-   
+
    public JSONObject query_Billentry(String sql)
    {
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      Unit unit = new Unit();
      JSONObject json = null;
      try {
-       this.query = this.session.createQuery(sql);
-       this.list = this.query.list();
-       json = unit.jsonListSucces(this.list);
-       this.transaction.commit();
-       this.session.close();
+       query = session.createQuery(sql);
+       query.setFetchSize(0);
+       query.setMaxResults(30);
+       list = query.list();
+       json = unit.jsonListSucces(list);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -37,20 +44,20 @@
      }
      return json;
 	 }
-   
+
    public JSONObject list_Billentry(String sql, String value)
    {
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      Unit unit = new Unit();
      JSONObject json = null;
      try {
-      this.query = this.session.createQuery(sql);
-       this.query.setString("1", "%" + value + "%");
-       this.list = this.query.list();
-       json = unit.jsonListSucces(this.list);
-       this.transaction.commit();
-       this.session.close();
+      query = session.createQuery(sql);
+       query.setString("1", "%" + value + "%");
+       list = query.list();
+       json = unit.jsonListSucces(list);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -59,23 +66,31 @@
      }
      return json;
    }
-   
+
    public JSONObject query_Billentry(String sql, String value)
    {
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      JSONObject json = null;
      Unit unit = new Unit();
+     JSONArray jsonArray1 = new JSONArray();
      try {
-       this.query = this.session.createQuery(sql);
-       this.query.setString(0, value);
-       Billentry tbUser = (Billentry)this.query.uniqueResult();
+       query = session.createQuery(sql);
+       query.setString(0, value);
+       Billentry tbUser = (Billentry)query.uniqueResult();
+       String commodityId=tbUser.getCommodityId();
+       String[] a=commodityId.split(",");
+       for (int i = 0; i < a.length; i++) {
+    	   Commodity commodity=(Commodity)session.get(Commodity.class, Integer.valueOf(a[i]));
+    	   JSONObject json3 = new JSONObject(commodity);
+    	   jsonArray1.put(json3);
+	   }
        JSONObject json2 = new JSONObject(tbUser);
-       System.out.println(json2);
+       json2.put("equipmentDetailList", jsonArray1);
        json = unit.jsonSucces();
        json.put("data", json2);
-       this.transaction.commit();
-       this.session.close();
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
@@ -84,66 +99,66 @@
      }
      return json;
    }
-   
-   public JSONObject addBillentry(Billentry Billentry)
+
+   public JSONObject addBillentry(Billentry Billentry,JSONArray equipmentDetailList)
    {
-     Unit unit = new Unit();
-     JSONObject json = new JSONObject();
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
-     try {
-       this.session.save(Billentry);
-       json = unit.jsonSucces();
-       json.put("data", Billentry);
-       this.transaction.commit();
-       this.session.close();
+	   Unit unit = new Unit();
+	     JSONObject json = new JSONObject();
+	     session = HibernateSessionFactory.getSession();
+	     transaction = session.beginTransaction();
+	     try {
+	       session.save(Billentry);
+	       json = unit.jsonSucces();
+	       json.put("data", Billentry);
+	       transaction.commit();
+	       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
        json = unit.jsonError();
        json.put("data", e);
      }
-     
+
      return json;
    }
-   
+
    public JSONObject update(Billentry Billentry)
    {
      Unit unit = new Unit();
      JSONObject json = new JSONObject();
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      try {
-       this.session.update(Billentry);
+       session.update(Billentry);
        json = unit.jsonSucces();
        json.put("data", Billentry);
-       this.transaction.commit();
-       this.session.close();
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
        json = unit.jsonError();
        json.put("data", e);
      }
-     
+
      return json;
    }
-   
+
    public JSONObject deldate(int id)
    {
      Unit unit = new Unit();
      JSONObject json = new JSONObject();
-     this.session = HibernateSessionFactory.getSession();
-     this.transaction = this.session.beginTransaction();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
      try {
        Billentry s = new Billentry();
        System.out.println(id);
-       s = (Billentry)this.session.get(Billentry.class, Integer.valueOf(id));
-       this.session.delete(s);
+       s = (Billentry)session.get(Billentry.class, Integer.valueOf(id));
+       session.delete(s);
        json = unit.jsonSucces();
        json.put("data", s);
-       this.transaction.commit();
-       this.session.close();
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();

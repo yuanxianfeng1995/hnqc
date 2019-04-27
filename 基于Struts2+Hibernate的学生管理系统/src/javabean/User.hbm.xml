@@ -6,26 +6,26 @@
 -->
 <hibernate-mapping>
     <class name="javabean.User" table="user" catalog="user">
-        <id name="id" type="java.lang.Integer">
+        <id name="id" type="integer">
             <column name="id" />
             <generator class="increment" />
         </id>
-        <property name="name" type="java.lang.String">
+        <property name="name" type="string">
             <column name="name" length="45" not-null="true" />
         </property>
-        <property name="sex" type="java.lang.String">
+        <property name="sex" type="string">
             <column name="sex" length="45" />
         </property>
-        <property name="age" type="java.lang.String">
+        <property name="age" type="string">
             <column name="age" length="45" />
         </property>
-        <property name="birthday" type="java.util.Date">
+        <property name="birthday" type="date">
             <column name="birthday" length="10" />
         </property>
-        <property name="remark" type="java.lang.String">
+        <property name="remark" type="string">
             <column name="remark" length="300" />
         </property>
-        <property name="phone" type="java.lang.String">
+        <property name="phone" type="string">
             <column name="phone" length="100" />
         </property>
         <set name="maintains" inverse="true">

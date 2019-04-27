@@ -1,37 +1,24 @@
 <template>
   <div class="jw-view-page">
     <jw-grid ref="grid" :grid-options="gridOptions">
+      <outbound-md ref="md" :mode="'dialog'"></outbound-md>
       <equipment-detail ref="detail" :detail-options="detailOptions"></equipment-detail>
     </jw-grid>
-    <div id="printJS-iframe">
-      <h2>出库单</h2>
-      <div>
-        <span style="width: 250px">设备名称:{{prints.name}}</span><span style="width: 250px">厂家:{{prints.manufacturer}}</span>
-      </div>
-      <div>
-        <span style="width: 250px">价格(元):{{prints.price}}</span>
-        <span style="width: 250px">出库日期:{{$moment(prints.purchasedDate).format('YYYY年MM月DD日')}}</span>
-      </div>
-      <div>
-        <p>备注:{{prints.remark}}</p>
-      </div>
-    </div>
   </div>
 </template>
 
 
 <script>
   import {ViewlMixin} from 'mixins'
-  import printJS from 'print-js'
   export default {
     name: 'outboundView',
     mixins: [ViewlMixin],
     components: {
-      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'outbound'),
+      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'warehouse-outbound'),
+      OutboundMd: r => require.ensure([], () => r(require('./OutboundMd')), 'warehouse-outbound')
     },
     data () {
       return {
-        prints: {},
         detailOptions: {
           context: {
             featureComponent: this,
@@ -94,9 +81,9 @@
         tooltipField: 'manufacturer',
         width: 120
       }, {
-        headerName: '地址',
-        field: 'manufacturer',
-        tooltipField: 'manufacturer',
+        headerName: '地址电话',
+        field: 'addr',
+        tooltipField: 'addr',
         width: 120
       }, {
         headerName: '总计数量',
@@ -110,7 +97,7 @@
         width: 120
       }, {
         headerName: '录单日期',
-        field: 'purchased_date',
+        field: 'purchasedDate',
         type: ['TimestampRender'],
         cellRendererParams: {options: {format: 'YYYY-MM-DD'}},
         width: 120
@@ -139,17 +126,8 @@
           }, {
             id: 'print',
             onClick (params, entity) {
-               params.context.featureComponent.prints = entity
-              setTimeout(() => {
-                printJS({ printable: 'printJS-iframe', type: 'html',
-                  scanStyles: false,
-                  style: '#printJS-iframe{width: 600px;margin: 0 auto;font-size: 18px;}#printJS-iframe header{\n' +
-                    '  text-align: center;}#printJS-iframe>div>span{  display: inline-block;\n' +
-                    '  width: 250px;margin-right: 30px;height: 40px;\n' +
-                    '  line-height: 40px;overflow: hidden;}#printJS-iframe h2 {\n' +
-                    '  text-align: center;}'
-                })
-              },600)
+              let vm = params.context.featureComponent
+              vm.$refs['md'].open(entity)
             }
           }, {
             id: 'remove',

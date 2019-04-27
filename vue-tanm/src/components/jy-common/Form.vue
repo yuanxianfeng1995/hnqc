@@ -193,7 +193,7 @@
             if (this.options.operation === 'add') {
               p = this.$http.post(this.options.context.url, this.entity, cfg)
             } else if (this.options.operation === 'edit') {
-              p = this.$http.put(this.options.context.url + subUrl + '?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + this.entity.id, this.entity, cfg)
+              p = this.$http.put(this.options.context.url + subUrl + '?' + this.entity.id, this.entity, cfg)
             } else if (this.options.operation === 'custom') {
               p = this.$http.put(this.options.context.url + subUrl, this.entity, cfg)
             } else {

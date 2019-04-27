@@ -28,11 +28,7 @@ import org.json.JSONObject;
           query.setFetchSize(0);
           query.setMaxResults(30);
           list = query.list();
-          Query query2 = session.createQuery("select count(*) "+sql);
-          Object obj=query2.uniqueResult();
-          Long lobj=(Long)obj;
-          int count=lobj.intValue();
-          json = unit.jsonListSucces(list,count);
+          json = unit.jsonListSucces(list);
           transaction.commit();
           session.close();
      }

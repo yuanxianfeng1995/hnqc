@@ -33,11 +33,7 @@ import org.json.JSONObject;
        query.setFetchSize(0);
        query.setMaxResults(30);
        list = query.list();
-       Query query2 = session.createQuery("select count(*) "+sql);
-       Object obj=query2.uniqueResult();
-       Long lobj=(Long)obj;
-       int count=lobj.intValue();
-       json = unit.jsonListSucces(list,count);
+       json = unit.jsonListSucces(list);
        transaction.commit();
        session.close();
      }
@@ -91,7 +87,6 @@ import org.json.JSONObject;
 	   }
        JSONObject json2 = new JSONObject(tbUser);
        json2.put("equipmentDetailList", jsonArray1);
-       System.out.println(json2);
        json = unit.jsonSucces();
        json.put("data", json2);
        transaction.commit();
@@ -111,7 +106,6 @@ import org.json.JSONObject;
 	     JSONObject json = new JSONObject();
 	     session = HibernateSessionFactory.getSession();
 	     transaction = session.beginTransaction();
-	     System.out.println("addOutbound ---"+Outbound);
 	     try {
 	       session.save(Outbound);
 	       json = unit.jsonSucces();

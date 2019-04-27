@@ -19,27 +19,35 @@ import org.json.JSONObject;
 public class Unit {
 //	{
 //		code: "0"
-//		data: {totalCount: 10, pageSize: 30, pageNo: 0, orderBy: "f_no desc",¡­}
-//		message: "´¦Àí³É¹¦¡£"
+//		data: {totalCount: 10, pageSize: 30, pageNo: 0, orderBy: "f_no desc",â€¦}
+//		message: "å¤„ç†æˆåŠŸã€‚"
 //		success: true
 //	
 //
 	public JSONObject jsonListSucces(List data){
-		JSONObject jsonObject = new JSONObject("{'code':'0','message':'´¦Àí³É¹¦','success': 'true'}");
+		JSONObject jsonObject = new JSONObject("{'code':'0','message':'å¤„ç†æˆåŠŸ','success': 'true'}");
 		JSONObject items = new JSONObject("{'items':[],'pageNo':0,'orderBy':'id desc'}");
 		items.put("items", data);
-		items.put("pageSize", data.size()/13);
 		items.put("pageSize", data.size());
 		items.put("totalCount", data.size());
 		jsonObject.put("data", items);
 		return jsonObject;
 	}
+	public JSONObject jsonListSucces(List data,int count){
+		JSONObject jsonObject = new JSONObject("{'code':'0','message':'å¤„ç†æˆåŠŸ','success': 'true'}");
+		JSONObject items = new JSONObject("{'items':[],'pageNo':0,'orderBy':'id desc'}");
+		items.put("items", data);
+		items.put("pageSize", data.size());
+		items.put("totalCount", count);
+		jsonObject.put("data", items);
+		return jsonObject;
+	}
 public JSONObject jsonSucces(){
-	JSONObject jsonObject = new JSONObject("{'code':'0','message':'´¦Àí³É¹¦','success': 'true'}");
+	JSONObject jsonObject = new JSONObject("{'code':'0','message':'å¤„ç†æˆåŠŸ','success': 'true'}");
 	return jsonObject;
 }
 public JSONObject jsonError(){
-	JSONObject jsonObject = new JSONObject("{'code':'-1','message':'´¦ÀíÊ§°Ü','success': 'false'}");
+	JSONObject jsonObject = new JSONObject("{'code':'-1','message':'å¤„ç†å¤±è´¥','success': 'false'}");
 	return jsonObject;
 }
 public String getRequestPayload(HttpServletRequest request) throws IOException {

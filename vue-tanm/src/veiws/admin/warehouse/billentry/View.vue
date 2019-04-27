@@ -1,37 +1,24 @@
 <template>
   <div class="jw-view-page">
     <jw-grid ref="grid" :grid-options="gridOptions">
+      <billentry-md ref="md" :mode="'dialog'"></billentry-md>
       <equipment-detail ref="detail" :detail-options="detailOptions"></equipment-detail>
     </jw-grid>
-    <div id="printJS-iframe">
-      <h2>出库单</h2>
-      <div>
-        <span style="width: 250px">设备名称:{{prints.name}}</span><span style="width: 250px">厂家:{{prints.manufacturer}}</span>
-      </div>
-      <div>
-        <span style="width: 250px">价格(元):{{prints.price}}</span>
-        <span style="width: 250px">出库日期:{{$moment(prints.purchasedDate).format('YYYY年MM月DD日')}}</span>
-      </div>
-      <div>
-        <p>备注:{{prints.remark}}</p>
-      </div>
-    </div>
   </div>
 </template>
 
 
 <script>
   import {ViewlMixin} from 'mixins'
-  import printJS from 'print-js'
   export default {
     name: 'outboundView',
     mixins: [ViewlMixin],
     components: {
-      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'outbound'),
+      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'warehouse-outbound'),
+      BillentryMd: r => require.ensure([], () => r(require('./BillentryMd')), 'warehouse-outbound')
     },
     data () {
       return {
-        prints: {},
         detailOptions: {
           context: {
             featureComponent: this,
@@ -45,8 +32,8 @@
             operations: [{id: 'refresh'}, {id: 'add',}, {id: 'export'}]
           },
           context: {
-            name: '出库单',
-            url: '/api/OutboundAction.action',
+            name: '入库单',
+            url: '/api/BillentryAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission
@@ -77,43 +64,58 @@
         hide: this.mode !== 'selector',
         type: 'Checkbox'
       }, {
-        headerName: '编号',
+        headerName: '单据编号',
         field: 'no',
         tooltipField: 'no',
         type: ['ViewRender', 'LikeFilter'],
         width: 120
       }, {
-        headerName: '商品全名',
+        headerName: '客户名称',
         field: 'name',
         tooltipField: 'name',
         type: ['ViewRender', 'LikeFilter'],
         width: 120
       }, {
-        headerName: '单位',
+        headerName: '销货单位',
         field: 'manufacturer',
         tooltipField: 'manufacturer',
         width: 120
       }, {
-        headerName: '数量',
+        headerName: '地址电话',
+        field: 'addr',
+        tooltipField: 'addr',
+        width: 120
+      }, {
+        headerName: '总计数量',
         field: 'number',
         type: ['NumberRender'],
         width: 120
       }, {
-        headerName: '单价',
-        field: 'price',
+        headerName: '页小计',
+        field: 'money',
         type: ['NumberRender'],
         width: 120
       }, {
-        headerName: '金额',
-        field: 'money',
-        type: ['NumberRender'],
+        headerName: '录单日期',
+        field: 'purchasedDate',
+        type: ['TimestampRender'],
+        cellRendererParams: {options: {format: 'YYYY-MM-DD'}},
+        width: 120
+      }, {
+        headerName: '制单人',
+        field: 'making',
+        tooltipField: 'making',
+        width: 120
+      }, {
+        headerName: '经手人',
+        field: 'Handle',
+        tooltipField: 'Handle',
         width: 120
       }, {
         headerName: '备注',
         field: 'remark',
         tooltipField: 'remark',
-        width: 150,
-        suppressSizeToFit: false
+        width: 150
       }, {
         hide: this.mode === 'selector',
         type: 'OperationRender',
@@ -124,17 +126,8 @@
           }, {
             id: 'print',
             onClick (params, entity) {
-              params.context.featureComponent.prints = entity
-              setTimeout(() => {
-                printJS({ printable: 'printJS-iframe', type: 'html',
-                  scanStyles: false,
-                  style: '#printJS-iframe{width: 600px;margin: 0 auto;font-size: 18px;}#printJS-iframe header{\n' +
-                    '  text-align: center;}#printJS-iframe>div>span{  display: inline-block;\n' +
-                    '  width: 250px;margin-right: 30px;height: 40px;\n' +
-                    '  line-height: 40px;overflow: hidden;}#printJS-iframe h2 {\n' +
-                    '  text-align: center;}'
-                })
-              },600)
+              let vm = params.context.featureComponent
+              vm.$refs['md'].open(entity)
             }
           }, {
             id: 'remove',

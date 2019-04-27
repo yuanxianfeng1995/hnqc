@@ -1,8 +1,6 @@
 package javabean;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Outbound entity. @author MyEclipse Persistence Tools
@@ -16,15 +14,15 @@ public class Outbound implements java.io.Serializable {
 	private String no;
 	private String name;
 	private Integer number;
-	private Double price;
-	private Double money;
+	private double price;
+	private double money;
 	private String manufacturer;
 	private String addr;
 	private Date purchasedDate;
 	private String making;
 	private String handle;
 	private String remark;
-	private Set commodities = new HashSet(0);
+	private String commodityId;
 
 	// Constructors
 
@@ -38,9 +36,9 @@ public class Outbound implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Outbound(String no, String name, Integer number, Double price,
-			Double money, String manufacturer, String addr, Date purchasedDate,
-			String making, String handle, String remark, Set commodities) {
+	public Outbound(String no, String name, Integer number, double price,
+			double money, String manufacturer, String addr, Date purchasedDate,
+			String making, String handle, String remark, String commodityId) {
 		this.no = no;
 		this.name = name;
 		this.number = number;
@@ -52,7 +50,7 @@ public class Outbound implements java.io.Serializable {
 		this.making = making;
 		this.handle = handle;
 		this.remark = remark;
-		this.commodities = commodities;
+		this.commodityId = commodityId;
 	}
 
 	// Property accessors
@@ -89,19 +87,19 @@ public class Outbound implements java.io.Serializable {
 		this.number = number;
 	}
 
-	public Double getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public Double getMoney() {
+	public double getMoney() {
 		return this.money;
 	}
 
-	public void setMoney(Double money) {
+	public void setMoney(double money) {
 		this.money = money;
 	}
 
@@ -153,12 +151,12 @@ public class Outbound implements java.io.Serializable {
 		this.remark = remark;
 	}
 
-	public Set getCommodities() {
-		return this.commodities;
+	public String getCommodityId() {
+		return this.commodityId;
 	}
 
-	public void setCommodities(Set commodities) {
-		this.commodities = commodities;
+	public void setCommodityId(String commodityId) {
+		this.commodityId = commodityId;
 	}
 
 }
