@@ -42,10 +42,11 @@ CREATE TABLE `billentry` (
   `money` double DEFAULT NULL COMMENT '页小计金额',
   `manufacturer` varchar(45) DEFAULT NULL COMMENT '单位',
   `addr` varchar(300) DEFAULT NULL,
-  `purchased_date` date DEFAULT NULL,
+  `purchasedDate` date DEFAULT NULL,
   `making` varchar(45) DEFAULT NULL COMMENT '制单人',
   `Handle` varchar(45) DEFAULT NULL COMMENT '经手人',
   `remark` varchar(300) DEFAULT NULL,
+  `commodityId` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -65,22 +66,14 @@ CREATE TABLE `commodity` (
   `manufacturer` varchar(45) DEFAULT NULL,
   `purchased_date` date DEFAULT NULL,
   `remark` varchar(300) DEFAULT NULL,
-  `billentryId` int(11) unsigned DEFAULT NULL,
-  `outboundId` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `bullentry` (`billentryId`),
-  KEY `outbound` (`outboundId`),
-  CONSTRAINT `bullentry` FOREIGN KEY (`billentryId`) REFERENCES `billentry` (`id`),
-  CONSTRAINT `outbound` FOREIGN KEY (`outboundId`) REFERENCES `outbound` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `commodity` */
 
-insert  into `commodity`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`purchased_date`,`remark`,`billentryId`,`outboundId`) values 
-(1,'2','asd',21,1,21,'撒的','2019-04-18','ASDASD',NULL,NULL),
-(2,'no','name',1,15.2,NULL,'manufacturer','2018-02-04','remark',NULL,NULL),
-(3,'ad','ad',0,0,NULL,'爱迪生','2019-04-25','阿萨德',NULL,NULL),
-(4,'爱迪生','阿萨德',0,0,NULL,'撒的','2019-04-25','',NULL,NULL);
+insert  into `commodity`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`purchased_date`,`remark`) values 
+(1,'xas','阿萨德',212,213,23123,'啊实打实的','2019-04-27','奥术大师大所大声道'),
+(2,'xdsd','czdsa',312,342,435345,'啊实打实的','2019-04-27','春风骀荡多多多多多多');
 
 /*Table structure for table `maintain` */
 
@@ -113,17 +106,57 @@ CREATE TABLE `outbound` (
   `money` double DEFAULT NULL COMMENT '页小计金额',
   `manufacturer` varchar(45) DEFAULT NULL COMMENT '单位',
   `addr` varchar(300) DEFAULT NULL,
-  `purchased_date` date DEFAULT NULL,
+  `purchasedDate` date DEFAULT NULL,
   `making` varchar(45) DEFAULT NULL COMMENT '制单人',
   `Handle` varchar(45) DEFAULT NULL COMMENT '经手人',
   `remark` varchar(300) DEFAULT NULL,
+  `commodityId` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 /*Data for the table `outbound` */
 
-insert  into `outbound`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`addr`,`purchased_date`,`making`,`Handle`,`remark`) values 
-(1,'xsf','正则',12,2,24,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `outbound`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`addr`,`purchasedDate`,`making`,`Handle`,`remark`,`commodityId`) values 
+(1,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
+(2,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(3,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
+(4,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(5,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(6,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
+(7,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
+(8,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
+(9,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
+(10,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(11,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
+(12,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(13,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(14,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
+(15,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
+(16,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
+(17,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
+(18,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(19,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
+(20,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(21,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(22,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
+(23,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
+(24,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
+(25,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
+(26,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(27,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
+(28,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(29,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(30,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
+(31,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
+(32,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
+(33,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
+(34,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(35,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
+(36,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(37,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
+(38,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
+(39,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
+(40,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL);
 
 /*Table structure for table `student` */
 

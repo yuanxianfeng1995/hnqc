@@ -14,20 +14,20 @@
         <el-input v-model="entity.addr"/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="总计数量" prop="number">
-        <el-input-number v-model="entity.number" disabled/>
+        <el-input-number v-model="count" disabled/>
       </el-form-item>
 
       <el-form-item class="jw-field jw-field-1" label="页小计">
-        <el-input-number v-model="getmoney" disabled/>
+        <el-input-number v-model="money" disabled/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="录单日期" prop="purchasedDate">
         <el-date-picker v-model="entity.purchasedDate"/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="制单人" prop="making">
-        <el-input v-model="entity.making" disabled/>
+        <el-input v-model="entity.making"/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="经手人" prop="Handle">
-        <el-input v-model="entity.Handle" disabled/>
+        <el-input v-model="entity.handle"/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-2" label="备注" prop="remark">
         <el-input v-model="entity.remark" type="textarea" :autosize="{maxRows: 6}"/>
@@ -84,20 +84,22 @@
               id: '',
               no: '',
               manufacturer: '',
-              price: '',
-              number: '',
+              price: 1,
+              number: 1,
               purchasedDate: this.$moment().toDate(),
               remark: '',
-              money: '',
-              Handle: '',
+              money: 1,
+              handle: '',
               making: '',
-              addr: ''
+              addr: '',
+              equipmentDetailList: []
             })
           },
           loadRemoteEntity (options, cb) {
             let vm = options.context.detailComponent
             this.$http.get(options.context.url + '?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + options.params.id).then((response) => {
               let entity = response.body.success ? response.body.data : {}
+              entity.purchasedDate = entity.purchasedDate || this.$moment().toDate()
               cb(entity)
               vm.$refs['grid'].setData(entity.equipmentDetailList)
             })
@@ -186,11 +188,35 @@
       }]
     },
     computed: {
-      getmoney: function () {
-        return 0
+      money: {
+        get: function () {
+          let money = 0;
+          if(this.entity.equipmentDetailList && this.entity.equipmentDetailList.length > 0){
+            this.entity.equipmentDetailList.forEach(function(equipment) {
+              money= money + equipment.money
+            })
+          }
+          return money
+        },
+        // setter
+        set: function (newValue) {
+        }
+      },
+      count: {
+        get: function () {
+          let count = 0;
+          if(this.entity.equipmentDetailList && this.entity.equipmentDetailList.length > 0){
+            this.entity.equipmentDetailList.forEach(function(equipment) {
+              count= count + equipment.number
+            })
+          }
+          return count
+        },
+        // setter
+        set: function (newValue) {
+        }
       }
-    }
-    ,
+    },
     methods: {
       onAddItem (params, entity) {
         params.context.featureComponent.$refs.selector.open()
@@ -215,7 +241,7 @@
               price: selectedTemplate.price,
               money: selectedTemplate.money,
               manufacturer: selectedTemplate.manufacturer,
-              purchased_date: selectedTemplate.purchased_date,
+              purchasedDate: selectedTemplate.purchasedDate,
               remark: ''
             })
           }

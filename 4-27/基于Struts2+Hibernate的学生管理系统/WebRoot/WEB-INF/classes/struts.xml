@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.il8n.encodong" value="UTF-8"/>
+<package name="lee" extends="struts-default">
+ <action name="IndexAction" class="action.IndexAction" method="write"></action>
+ <action name="CommodityAction" class="action.CommodityAction" method="write"></action>
+ <action name="OutboundAction" class="action.OutboundAction" method="write"></action>
+ <action name="BillentryAction" class="action.BillentryAction" method="write"></action>
+ <action name="CustomerAction" class="action.CustomerAction" method="write"></action>
+</package>
+</struts>    

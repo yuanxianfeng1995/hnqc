@@ -1,9 +1,7 @@
 <template>
   <div class="jw-view-page">
     <jw-grid ref="grid" :grid-options="gridOptions">
-      <!--<jy-dialog ref="mbDialog">-->
-        <!--<outbound-mb ref="mb" :mode="'dialog'"></outbound-mb>-->
-      <!--</jy-dialog>-->
+      <outbound-mb ref="mb" :mode="'dialog'" :view-options="equipmentSuspendViewOptions"></outbound-mb>
       <detail ref="detail" :detail-options="detailOptions"></detail>
     </jw-grid>
   </div>
@@ -17,16 +15,24 @@
     mixins: [ViewlMixin],
     components: {
       Detail: r => require.ensure([], () => r(require('./Detail')), 'warehouse-commodity'),
-      OutboundMb: r => require.ensure([], () => r(require('./Mb')), 'warehouse-commodity')
+      OutboundMb: r => require.ensure([], () => r(require('./commodityMd')), 'warehouse-commodity')
     },
     data () {
       return {
-        prints: {},
         detailOptions: {
           context: {
             featureComponent: this,
             getGridComponent (options) {
               return options.context.featureComponent.$refs['grid']
+            }
+          }
+        },
+        equipmentSuspendViewOptions: {
+          gridOptions: {
+            context: {
+              params: {
+                id: null
+              }
             }
           }
         },
@@ -121,17 +127,11 @@
             id: 'print',
             onClick (params, entity) {
               let vm = params.context.featureComponent
-              vm.$refs['mbDialog'].open({title: '打印商品信息'})
-              // setTimeout(() => {
-              //   printJS({ printable: 'printJS-iframe', type: 'html',
-              //     scanStyles: false,
-              //     style: '#printJS-iframe{width: 600px;margin: 0 auto;font-size: 18px;}#printJS-iframe header{\n' +
-              //       '  text-align: center;}#printJS-iframe>div>span{  display: inline-block;\n' +
-              //       '  width: 250px;margin-right: 30px;height: 40px;\n' +
-              //       '  line-height: 40px;overflow: hidden;}#printJS-iframe h2 {\n' +
-              //       '  text-align: center;}'
-              //   })
-              // },600)
+              vm.$refs['mb'].open(
+                {
+                  params: {prints:entity}
+                }
+              )
             }
           }, {
             id: 'remove',

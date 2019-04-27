@@ -36,9 +36,6 @@
   export default {
     name: 'outboundDetail',
     mixins: [DetailMixin],
-    // components: {
-    //   commodityView: r => require.ensure([], () => r(require('../commodity/View')), 'warehouse-commodity')
-    // },
     data () {
       return {
         options: {
@@ -52,12 +49,13 @@
             cb({
               id: '',
               no: '',
+              name: '',
               manufacturer: '',
-              price: '',
-              number: '',
+              price: 1,
+              number: 1,
               purchasedDate: this.$moment().toDate(),
               remark: '',
-              money: 0
+              money: 1
             })
           }
         },
