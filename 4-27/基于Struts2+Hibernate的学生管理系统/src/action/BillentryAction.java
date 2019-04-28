@@ -6,18 +6,13 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 import dao.BillentryDao;
-import dao.Canku;
  import dao.Unit;
 
  import java.io.PrintWriter;
  import java.net.URLDecoder;
  import java.text.SimpleDateFormat;
-import java.util.ArrayList;
  import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
-import javabean.Commodity;
 import javabean.HibernateSessionFactory;
  import javabean.Billentry;
 
@@ -125,33 +120,31 @@ import org.json.JSONObject;
            json = cabku.list_Billentry("from Billentry where " + name + " like ?1", value);
          }
        } else {
-         json = cabku.query_Billentry("from Billentry");
+    	 String[] pageNo = queryString.split("pageNo=");
+    	 int count=cabku.count();
+    	 json=cabku.paging_Billentry(count,Integer.valueOf(pageNo[1]));
        }
        out.println(json);
      } else if (method.equals("POST")) {
        Unit unit = new Unit();
        String str = unit.getRequestPayload(request);
        JSONObject json2 = new JSONObject(str);
-       System.out.println("json2 ---"+json2);
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        JSONArray equipmentDetailList=json2.getJSONArray("equipmentDetailList");
-       System.out.println("List-----"+equipmentDetailList);
        String commodityId=null;
        for (int i = 0; i < equipmentDetailList.length(); i++) {
    		JSONObject a=(JSONObject) equipmentDetailList.get(i);
-   		System.out.println("Object a----"+a.getInt("id"));
    		if(commodityId!=null){
    			commodityId=commodityId+","+a.getInt("id");
    		}else{
    			commodityId=""+a.getInt("id");
    		}
 	   } 
-       System.out.println("commodityId-----"+commodityId);
+//       System.out.println("commodityId-----"+commodityId);
        Date date = sdf.parse(json2.getString("purchasedDate"));  
        Billentry a =new Billentry(json2.getString("no"),json2.getString("name"),json2.getInt("number"),json2.getDouble("price"),
     		   json2.getDouble("money"),json2.getString("manufacturer"),json2.getString("addr"),date,json2.getString("making"),
     		   json2.getString("handle"),json2.getString("remark"),commodityId);
-       System.out.println("POST------");
       JSONObject json = cabku.addBillentry(a,equipmentDetailList);
        out.println(json);
      } else if (method.equals("PUT")) {
@@ -161,11 +154,9 @@ import org.json.JSONObject;
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        Date date = sdf.parse(json2.getString("purchasedDate"));
        JSONArray equipmentDetailList=json2.getJSONArray("equipmentDetailList");
-       System.out.println("List-----"+equipmentDetailList);
        String commodityId=null;
        for (int i = 0; i < equipmentDetailList.length(); i++) {
    		JSONObject a=(JSONObject) equipmentDetailList.get(i);
-   		System.out.println("Object a----"+a.getInt("id"));
    		if(commodityId!=null){
    			commodityId=commodityId+","+a.getInt("id");
    		}else{

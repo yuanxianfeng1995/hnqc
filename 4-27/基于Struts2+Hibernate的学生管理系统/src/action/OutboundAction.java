@@ -124,7 +124,9 @@ import org.json.JSONObject;
            json = cabku.list_Outbound("from Outbound where " + name + " like ?1", value);
          }
        } else {
-         json = cabku.query_Outbound("from Outbound");
+    	 String[] pageNo = queryString.split("pageNo=");
+    	 int count=cabku.count();
+    	 json=cabku.paging_Outbound(count,Integer.valueOf(pageNo[1]));
        }
        out.println(json);
      } else if (method.equals("POST")) {

@@ -3,7 +3,7 @@
 
 <template>
   <el-dialog :visible.sync="visible" title="打印">
-    <div class="el-message-box__content" id="printJS-iframe">
+    <div id="printJS-iframe">
       <div class="head">
         <h3 style="text-align: center">湖南鑫亿德 销售出货单</h3>
         <div style="display: flex;justify-content: space-between">
@@ -12,7 +12,7 @@
           <span>客户名称:{{orderDomain ? orderDomain.no : ''}}</span>
         </div>
       </div>
-      <table class="center" border="1" style="min-width: 100%" v-if="orderDomain" >
+      <table class="center" border="1px" cellpadding="0" cellspacing="0" style="min-width: 100%" v-if="orderDomain" >
         <tr>
           <td>编号</td>
           <td>商品名称</td>

@@ -83,15 +83,16 @@
             cb({
               id: '',
               no: '',
-              manufacturer: '',
+              name: '城南宏能汽车',
+              manufacturer: '湖南鑫亿德汽车服务有限公司',
               price: 1,
               number: 1,
               purchasedDate: this.$moment().toDate(),
               remark: '',
               money: 1,
-              handle: '',
-              making: '',
-              addr: '',
+              handle: '余琴',
+              making: '管理员',
+              addr: '长沙市城汽配城2栋132-133 0731-88577735',
               equipmentDetailList: []
             })
           },
@@ -99,7 +100,6 @@
             let vm = options.context.detailComponent
             this.$http.get(options.context.url + '?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + options.params.id).then((response) => {
               let entity = response.body.success ? response.body.data : {}
-              entity.purchasedDate = entity.purchasedDate || this.$moment().toDate()
               cb(entity)
               vm.$refs['grid'].setData(entity.equipmentDetailList)
             })

@@ -125,7 +125,10 @@ import org.json.JSONObject;
            json = cabku.list_User("from User where " + name + " like ?1", value);
          }
        } else {
-         json = cabku.query_User("from User");
+    	   String[] pageNo = queryString.split("pageNo=");
+      	 int count=cabku.count();
+      	 json=cabku.paging_User(count,Integer.valueOf(pageNo[1]));
+      
        }
        out.println(json);
      } else if (method.equals("POST")) {

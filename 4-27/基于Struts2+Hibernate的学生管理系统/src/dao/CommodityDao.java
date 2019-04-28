@@ -17,29 +17,47 @@ import org.json.JSONObject;
    private Query query;
    private List<Commodity> list;
 
-   public JSONObject query_Commodity(String sql)
+   public JSONObject paging_Commodity(int count,int i)
    {
      session = HibernateSessionFactory.getSession();
      transaction = session.beginTransaction();
+     int sum=i*30;
+     System.out.println("sum-----"+sum);
      Unit unit = new Unit();
      JSONObject json = null;
      try {
-    	  query = session.createQuery(sql);
-          query.setFetchSize(0);
-          query.setMaxResults(30);
-          list = query.list();
-          json = unit.jsonListSucces(list);
-          transaction.commit();
-          session.close();
+       query = session.createQuery("from Commodity order by id desc");
+       query.setFirstResult(sum);
+       query.setMaxResults(sum+30);
+       list = query.list();
+       json = unit.jsonListSucces(list,count);
+       System.out.println("json-------"+json);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
-       json = unit.jsonSucces();
-       json.put("data", e);
      }
      return json;
 	 }
-   
+   public int count(){
+	   session = HibernateSessionFactory.getSession();
+	     transaction = session.beginTransaction();
+	     int count=0;
+	   try {
+		   String hql = "select count(*) from Commodity";  
+	       Query query2 = session.createQuery(hql);
+	       Object obj=query2.uniqueResult();
+	       Long lobj=(Long) obj;
+	       count=lobj.intValue();
+	       transaction.commit();
+	       session.close();
+	     }
+	     catch (Exception e) {
+	       e.printStackTrace();
+	     }
+	   return count;
+   }
    public JSONObject list_Commodity(String sql, String value)
    {
      session = HibernateSessionFactory.getSession();

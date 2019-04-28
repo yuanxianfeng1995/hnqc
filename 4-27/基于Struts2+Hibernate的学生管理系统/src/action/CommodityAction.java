@@ -116,7 +116,9 @@ import org.json.JSONObject;
            json = cabku.list_Commodity("from Commodity where " + name + " like ?1", value);
          }
        } else {
-         json = cabku.query_Commodity("from Commodity");
+    	   String[] pageNo = queryString.split("pageNo=");
+      	 int count=cabku.count();
+      	 json=cabku.paging_Commodity(count,Integer.valueOf(pageNo[1]));
        }
        out.println(json);
      } else if (method.equals("POST")) {

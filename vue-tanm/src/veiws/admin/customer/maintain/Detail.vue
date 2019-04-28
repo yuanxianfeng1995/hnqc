@@ -67,12 +67,12 @@
               mileage: '',
               CompulsoryInsurance: this.$moment().toDate(),
               content: '',
-              userID: null
+              userID: ''
             })
           },
           loadRemoteEntity (options, cb) {
             let vm = options.context.detailComponent
-            this.$http.get(options.context.url + '?' + options.params.id).then((response) => {
+            this.$http.get(options.context.url + '?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + options.params.id).then((response) => {
               let entity = response.body.success ? response.body.data : {}
               this.$http.get('/api/UserAction.action?' + entity.userID).then((response) => {
                 vm.contractEntity = response.body.success ? response.body.data : {}
@@ -86,8 +86,7 @@
         },
         rules: {
           name: [
-            {required: true, message: '请输入设备名称', trigger: 'blur'},
-            {max: 128, message: '长度在128字符以内', trigger: 'blur'}
+            {required: true, message: '请选择客户名称', trigger: 'blur'}
           ],
         }
       }
@@ -95,11 +94,11 @@
     computed: {
       contract: { // 客户列表
         get () {
-          return {id: this.entity.userID, name: this.entity.username}
+          return {id: this.entity.userID, name: this.entity.name}
         },
         set (contract) {
           this.entity.userID = contract.id
-          this.entity.username = contract.name
+          this.entity.name = contract.name
         }
       }
     }

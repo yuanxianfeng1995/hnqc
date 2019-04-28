@@ -42,7 +42,7 @@
               return params.context.featureComponent.$refs['detail']
             },
             params: {
-              orderBy: 'id'
+              orderBy: 'id desc'
             }
           }
         }
@@ -73,17 +73,19 @@
         headerName: '客户名称',
         field: 'name',
         tooltipField: 'name',
-        type: ['ViewRender', 'LikeFilter'],
+        type: ['LikeFilter'],
         width: 120
       }, {
         headerName: '销货单位',
         field: 'manufacturer',
         tooltipField: 'manufacturer',
+        type: ['LikeFilter'],
         width: 120
       }, {
         headerName: '地址电话',
         field: 'addr',
         tooltipField: 'addr',
+        type: ['LikeFilter'],
         width: 120
       }, {
         headerName: '总计数量',
@@ -91,7 +93,7 @@
         type: ['NumberRender'],
         width: 120
       }, {
-        headerName: '页小计',
+        headerName: '小计金额',
         field: 'money',
         type: ['NumberRender'],
         width: 120

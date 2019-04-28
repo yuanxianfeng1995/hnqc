@@ -19,6 +19,10 @@
       <el-form-item class="jw-field jw-field-1" label="生日" prop="birthday">
         <el-date-picker v-model="entity.birthday" type="date"/>
       </el-form-item>
+      <el-form-item class="jw-field jw-field-1" label="会员等级" prop="level">
+        <jw-dict v-model="entity.level" clearable allow-create :data-type="'string'"
+                 :dict-item-list="['普通', '银牌', '铜牌', '金牌', '钻石']"/>
+      </el-form-item>
       <el-form-item class="jw-field jw-field-2" label="备注" prop="remark">
         <el-input v-model="entity.remark" type="textarea" :autosize="{maxRows: 6}"/>
       </el-form-item>
@@ -39,17 +43,18 @@
           size: 'small',
           context: {
             name: '出库单',
-            url: '/hoNeng/UserAction.action',
+            url: '/api/UserAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {
             cb({
               id: '',
-              sex: '',
+              sex: '男',
               phone: '',
               age: '',
               birthday: this.$moment().toDate(),
-              remark: ''
+              remark: '',
+              level: ''
             })
           }
         },

@@ -40,7 +40,7 @@
               return params.context.featureComponent.$refs['detail']
             },
             params: {
-              orderBy: 'id'
+              orderBy: 'id desc'
             }
           }
         }

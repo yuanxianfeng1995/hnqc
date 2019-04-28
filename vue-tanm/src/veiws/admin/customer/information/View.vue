@@ -32,7 +32,7 @@
           },
           context: {
             name: '出库单',
-            url: '/hoNeng/UserAction.action',
+            url: '/api/UserAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission
@@ -74,16 +74,25 @@
         headerName: '电话',
         field: 'phone',
         tooltipField: 'phone',
+        type: ['LikeFilter'],
         width: 120
       }, {
         headerName: '性别',
         field: 'sex',
         tooltipField: 'sex',
+        type: ['LikeFilter'],
         width: 120
       }, {
         headerName: '年龄',
         field: 'age',
         tooltipField: 'age',
+        type: ['LikeFilter'],
+        width: 120
+      }, {
+        headerName: '会员等级',
+        field: 'level',
+        tooltipField: 'level',
+        type: ['LikeFilter'],
         width: 120
       }, {
         headerName: '生日',
