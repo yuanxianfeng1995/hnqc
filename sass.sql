@@ -81,14 +81,14 @@ DROP TABLE IF EXISTS `maintain`;
 
 CREATE TABLE `maintain` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `license` varchar(10) DEFAULT NULL COMMENT '车牌号码',
-  `mileage` varchar(10) DEFAULT NULL COMMENT '里程',
-  `CompulsoryInsurance` date DEFAULT NULL COMMENT '交强险到期时间',
-  `content` varchar(300) DEFAULT NULL COMMENT '保养内容',
-  `userID` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`,`userID`),
-  KEY `usr FOREIGN KEY` (`userID`),
-  CONSTRAINT `usr FOREIGN KEY` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `license` varchar(10) DEFAULT NULL,
+  `mileage` varchar(10) DEFAULT NULL,
+  `CompulsoryInsurance` date DEFAULT NULL,
+  `content` varchar(300) DEFAULT NULL,
+  `userID` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `a` (`userID`),
+  CONSTRAINT `a` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `maintain` */
@@ -189,13 +189,14 @@ CREATE TABLE `user` (
   `birthday` date DEFAULT NULL,
   `remark` varchar(300) DEFAULT NULL,
   `phone` varchar(100) DEFAULT NULL,
+  `level` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=gbk;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`sex`,`age`,`birthday`,`remark`,`phone`) values 
-(1,'阿道夫吓死','男','20','2019-04-20','撒地方反复','1563132');
+insert  into `user`(`id`,`name`,`sex`,`age`,`birthday`,`remark`,`phone`,`level`) values 
+(1,'阿道夫吓死','男','20','2019-04-20','撒地方反复','1563132',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -10,7 +10,8 @@ public class Maintain implements java.io.Serializable {
 
 	// Fields
 
-	private MaintainId id;
+	private Integer id;
+	private User user;
 	private String license;
 	private String mileage;
 	private Date compulsoryInsurance;
@@ -22,15 +23,10 @@ public class Maintain implements java.io.Serializable {
 	public Maintain() {
 	}
 
-	/** minimal constructor */
-	public Maintain(MaintainId id) {
-		this.id = id;
-	}
-
 	/** full constructor */
-	public Maintain(MaintainId id, String license, String mileage,
+	public Maintain(User user, String license, String mileage,
 			Date compulsoryInsurance, String content) {
-		this.id = id;
+		this.user = user;
 		this.license = license;
 		this.mileage = mileage;
 		this.compulsoryInsurance = compulsoryInsurance;
@@ -39,12 +35,20 @@ public class Maintain implements java.io.Serializable {
 
 	// Property accessors
 
-	public MaintainId getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(MaintainId id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getLicense() {

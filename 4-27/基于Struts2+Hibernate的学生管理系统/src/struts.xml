@@ -8,5 +8,6 @@
  <action name="OutboundAction" class="action.OutboundAction" method="write"></action>
  <action name="BillentryAction" class="action.BillentryAction" method="write"></action>
  <action name="CustomerAction" class="action.CustomerAction" method="write"></action>
+  <action name="UserAction" class="action.UserAction" method="write"></action>
 </package>
 </struts>    

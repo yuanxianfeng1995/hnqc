@@ -19,6 +19,7 @@ public class User implements java.io.Serializable {
 	private Date birthday;
 	private String remark;
 	private String phone;
+	private String level;
 	private Set maintains = new HashSet(0);
 
 	// Constructors
@@ -34,13 +35,14 @@ public class User implements java.io.Serializable {
 
 	/** full constructor */
 	public User(String name, String sex, String age, Date birthday,
-			String remark, String phone, Set maintains) {
+			String remark, String phone, String level, Set maintains) {
 		this.name = name;
 		this.sex = sex;
 		this.age = age;
 		this.birthday = birthday;
 		this.remark = remark;
 		this.phone = phone;
+		this.level = level;
 		this.maintains = maintains;
 	}
 
@@ -100,6 +102,14 @@ public class User implements java.io.Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getLevel() {
+		return this.level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 	public Set getMaintains() {
