@@ -42,6 +42,15 @@ public class Unit {
 		jsonObject.put("data", items);
 		return jsonObject;
 	}
+	public JSONObject jsonListSucces(JSONObject data,int count){
+		JSONObject jsonObject = new JSONObject("{'code':'0','message':'处理成功','success': 'true'}");
+		JSONObject items = new JSONObject("{'items':[],'pageNo':0,'orderBy':'id desc'}");
+		items.put("items", data);
+		items.put("pageSize", 30);
+		items.put("totalCount", count);
+		jsonObject.put("data", items);
+		return jsonObject;
+	}
 public JSONObject jsonSucces(){
 	JSONObject jsonObject = new JSONObject("{'code':'0','message':'处理成功','success': 'true'}");
 	return jsonObject;

@@ -1,8 +1,6 @@
 package javabean;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -20,7 +18,6 @@ public class User implements java.io.Serializable {
 	private String remark;
 	private String phone;
 	private String level;
-	private Set maintains = new HashSet(0);
 
 	// Constructors
 
@@ -35,7 +32,7 @@ public class User implements java.io.Serializable {
 
 	/** full constructor */
 	public User(String name, String sex, String age, Date birthday,
-			String remark, String phone, String level, Set maintains) {
+			String remark, String phone, String level) {
 		this.name = name;
 		this.sex = sex;
 		this.age = age;
@@ -43,7 +40,6 @@ public class User implements java.io.Serializable {
 		this.remark = remark;
 		this.phone = phone;
 		this.level = level;
-		this.maintains = maintains;
 	}
 
 	// Property accessors
@@ -110,14 +106,6 @@ public class User implements java.io.Serializable {
 
 	public void setLevel(String level) {
 		this.level = level;
-	}
-
-	public Set getMaintains() {
-		return this.maintains;
-	}
-
-	public void setMaintains(Set maintains) {
-		this.maintains = maintains;
 	}
 
 }

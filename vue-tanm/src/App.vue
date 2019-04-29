@@ -13,7 +13,9 @@
     height: 100%;
     overflow: hidden;
   }
-
+  .jw-input-selector .el-dialog__wrapper{
+    overflow: inherit!important;
+  }
   fieldset {
     padding: 0;
     margin: 0;

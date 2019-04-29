@@ -12,7 +12,7 @@
           <span>客户名称:{{orderDomain ? orderDomain.no : ''}}</span>
         </div>
       </div>
-      <table class="center" border="1px" cellpadding="0" cellspacing="0" style="min-width: 100%" v-if="orderDomain" >
+      <table class="center" border="1px" cellpadding="0" cellspacing="0" style="min-width: 100%;border-collapse:collapse;" >
         <tr>
           <td>编号</td>
           <td>商品名称</td>
@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <td>总计大写</td>
-          <td>{{swapper(orderDomain.money)}}</td>
+          <td>{{swapper(orderDomain.money || 0)}}</td>
           <td>总计数量</td>
           <td>{{orderDomain ? orderDomain.number : ''}}</td>
           <td>页小计</td>
@@ -76,7 +76,7 @@
       open (orderDomain) {
         this.orderDomain = this.$lodash.merge({}, orderDomain)
         this.visible = true
-        this.$http.get('api/BillentryAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
+        this.$http.get('/hoNeng/BillentryAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
           this.orderDomain = response.body.success ? response.body.data : {}
         })
       },

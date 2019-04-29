@@ -5,8 +5,10 @@ import java.util.List;
 
 import javabean.Banji;
 import javabean.HibernateSessionFactory;
+import javabean.Maintain;
 import javabean.Outbound;
 import javabean.Student;
+import javabean.User;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -49,19 +51,19 @@ public class Test {
     	    transaction= session.beginTransaction();
     	    
     	    //    	    级联删除
-//    	    Banji s=new Banji();
-//    		s=(Banji)session.get(Banji.class,6);
+//    	    User s=new User();
+//    		s=(User)session.get(User.class,1);
 //    		session.delete(s);
+//    	    
     	    
-    	    
-    	    query=session.createQuery("from Outbound where name=?");
-			query.setString(0, "长沙");
+//    	    query=session.createQuery("from Outbound where name=?");
+//			query.setString(0, "长沙");
 //			list = query.list();
 //    	   query = session.createQuery("from Banji where id=?");
-//       	   query.setInteger(0, 5);
-			Outbound tbUser=(Outbound) query.uniqueResult();
-    	    System.out.println(tbUser);
-
+//       	   query.setInteger(0, 1);
+//       	    Banji tbUser=(Banji) query.uniqueResult();
+//    	    System.out.println(tbUser);
+//    	    
     	    //    	    更新
 //    	    Banji s=new Banji();
 //    	    s.setId(5);
@@ -69,7 +71,15 @@ public class Test {
 //    		session.update(s);
     	    
 //   	                                                  添加
-//    	    session.save(cla1());
+    	    
+//    	    User s = (User)session.get(User.class,1);
+//     	    Maintain st1=new Maintain();
+//     	    st1.setContent("content");
+//     	    st1.setUser(s);
+//     	    session.save(st1);
+//    	    s.getMaintains().add(st1);
+//    	    session.save(s);
+    	    session.save(cla1());
     		
     	    // 提交事务
     	    transaction.commit();  

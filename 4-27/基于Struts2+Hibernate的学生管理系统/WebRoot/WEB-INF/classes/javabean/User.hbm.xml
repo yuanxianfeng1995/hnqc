@@ -31,11 +31,5 @@
         <property name="level" type="java.lang.String">
             <column name="level" length="45" />
         </property>
-        <set name="maintains" inverse="true">
-            <key>
-                <column name="userID" />
-            </key>
-            <one-to-many class="javabean.Maintain" />
-        </set>
     </class>
 </hibernate-mapping>

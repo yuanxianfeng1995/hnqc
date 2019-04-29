@@ -1,7 +1,7 @@
 <template>
   <div class="jw-view-page">
     <jw-grid ref="grid" :grid-options="gridOptions">
-      <equipment-detail ref="detail" :detail-options="detailOptions"></equipment-detail>
+      <detail ref="detail" :detail-options="detailOptions"></detail>
     </jw-grid>
   </div>
 </template>
@@ -13,7 +13,7 @@
     name: 'customerView',
     mixins: [ViewlMixin],
     components: {
-      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'customer'),
+      Detail: r => require.ensure([], () => r(require('./Detail')), 'customer-information'),
     },
     data () {
       return {
@@ -32,7 +32,7 @@
           },
           context: {
             name: '出库单',
-            url: '/api/UserAction.action',
+            url: '/hoNeng/UserAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission

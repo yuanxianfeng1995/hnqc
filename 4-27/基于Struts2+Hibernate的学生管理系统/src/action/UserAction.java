@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 import dao.Canku;
+import dao.MaintainDao;
  import dao.Unit;
 import dao.UserDao;
 
@@ -140,7 +141,7 @@ import org.json.JSONObject;
  
        Date date = sdf.parse(json2.getString("birthday"));  
        User a =new User(json2.getString("name"),json2.getString("sex"),json2.getString("age"),date,json2.getString("remark"),
-    		   json2.getString("phone"),json2.getString("level"),null);
+    		   json2.getString("phone"),json2.getString("level"));
       System.out.println("POST------");
       JSONObject json = cabku.addUser(a);
        out.println(json);
@@ -154,7 +155,7 @@ import org.json.JSONObject;
 //       User(String name, String sex, String age, Date birthday,
 //   			String remark, String phone, String level, Set maintains) {
        User a =new User(json2.getString("name"),json2.getString("sex"),json2.getString("age"),date,json2.getString("remark"),
-    		   json2.getString("phone"),json2.getString("level"),null);
+    		   json2.getString("phone"),json2.getString("level"));
         if ((queryString != null) || (queryString != "")) {
          a.setId(Integer.valueOf(Integer.parseInt(queryString)));
        }
@@ -164,6 +165,8 @@ import org.json.JSONObject;
        out.println(json);
      } else {
        JSONObject json = cabku.deldate(Integer.parseInt(queryString));
+       MaintainDao Maintain = new MaintainDao();
+       Maintain.deldateUserId(Integer.parseInt(queryString));
        out.println(json);
      }
      out.flush();

@@ -31,7 +31,7 @@
           },
           context: {
             name: '出库单',
-            url: '/api/CommodityAction.action',
+            url: '/hoNeng/CommodityAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission

@@ -33,7 +33,7 @@
           },
           context: {
             name: '入库单',
-            url: '/api/BillentryAction.action',
+            url: '/hoNeng/BillentryAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission

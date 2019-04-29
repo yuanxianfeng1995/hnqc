@@ -76,7 +76,7 @@
           size: 'small',
           context: {
             name: '出库单',
-            url: '/api/BillentryAction.action',
+            url: '/hoNeng/BillentryAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {

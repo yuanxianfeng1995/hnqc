@@ -76,7 +76,7 @@
           size: 'small',
           context: {
             name: '出库单',
-            url: '/api/OutboundAction.action',
+            url: '/hoNeng/OutboundAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {

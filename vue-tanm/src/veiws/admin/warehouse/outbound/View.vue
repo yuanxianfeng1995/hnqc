@@ -33,7 +33,7 @@
           },
           context: {
             name: '出库单',
-            url: '/api/OutboundAction.action',
+            url: '/hoNeng/OutboundAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission

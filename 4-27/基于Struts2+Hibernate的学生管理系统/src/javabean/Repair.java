@@ -3,10 +3,10 @@ package javabean;
 import java.util.Date;
 
 /**
- * Maintain entity. @author MyEclipse Persistence Tools
+ * Repair entity. @author MyEclipse Persistence Tools
  */
 
-public class Maintain implements java.io.Serializable {
+public class Repair implements java.io.Serializable {
 
 	// Fields
 
@@ -21,11 +21,11 @@ public class Maintain implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Maintain() {
+	public Repair() {
 	}
 
 	/** full constructor */
-	public Maintain(String license, String mileage, Date compulsoryInsurance,
+	public Repair(String license, String mileage, Date compulsoryInsurance,
 			String content, Integer userId, String userName) {
 		this.license = license;
 		this.mileage = mileage;

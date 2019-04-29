@@ -13,7 +13,7 @@
     name: 'maintainView',
     mixins: [ViewlMixin],
     components: {
-      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'customer-maintain'),
+      EquipmentDetail: r => require.ensure([], () => r(require('./Detail')), 'customer-repair'),
     },
     data () {
       return {
@@ -31,8 +31,8 @@
             operations: [{id: 'refresh'}, {id: 'add',}, {id: 'export'}]
           },
           context: {
-            name: '保养信息',
-            url: '/hoNeng/MaintainAction.action',
+            name: '维修信息',
+            url: '/hoNeng/RepairAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission
@@ -87,7 +87,7 @@
         cellRendererParams: {options: {format: 'YYYY-MM-DD'}},
         width: 120
       }, {
-        headerName: '保养内容',
+        headerName: '维修内容',
         field: 'content',
         tooltipField: 'content',
         width: 120

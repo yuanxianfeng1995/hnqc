@@ -17,7 +17,7 @@
       <el-form-item class="jw-field jw-field-1 jw-middle-label" label="交强险到期时间" prop="birthday">
         <el-date-picker v-model="entity.compulsoryInsurance" type="date"/>
       </el-form-item>
-      <el-form-item class="jw-field jw-field-2" label="保养内容" prop="remark">
+      <el-form-item class="jw-field jw-field-2" label="维修内容" prop="remark">
         <el-input v-model="entity.content" type="textarea" :autosize="{maxRows: 6}"/>
       </el-form-item>
     </template>
@@ -57,7 +57,7 @@
           size: 'small',
           context: {
             name: '保养信息',
-            url: '/hoNeng/MaintainAction.action',
+            url: '/hoNeng/RepairAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {

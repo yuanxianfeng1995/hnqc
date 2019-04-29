@@ -12,7 +12,7 @@
           <span>客户名称:{{orderDomain ? orderDomain.no : ''}}</span>
         </div>
       </div>
-      <table class="center" border="1px" cellpadding="0" cellspacing="0" style="min-width: 100%" v-if="orderDomain" >
+      <table class="center" border="1px" cellpadding="0" cellspacing="0" style="min-width: 100%;border-collapse:collapse;">
         <tr>
           <td>编号</td>
           <td>商品名称</td>
@@ -78,7 +78,7 @@
         console.log(this.orderDomain.id)
         this.visible = true
         let _this = this
-        this.$http.get('api/OutboundAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
+        this.$http.get('/hoNeng/OutboundAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
           _this.orderDomain = response.body.success ? response.body.data : {}
           console.log(_this.orderDomain)
         })

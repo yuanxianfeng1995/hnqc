@@ -85,7 +85,7 @@
       <template>
         <!-- 左部 -->
         <div slot="left" style="height: 100%">
-          <!--<h2 style="margin: 10px 0px;text-align: center;color: #fff;">宏能汽车</h2>-->
+          <h2 style="margin: 10px 0px;text-align: center;color: #fff;">宏能汽车</h2>
           <div id="sideMenu" class="ad-menu ad-side-menu" style="height: 100%;background-color: #2e2c32;">
             <el-menu class="jw-menu-body jw-side-menu-body jw-menu-item-text"  :default-openeds="['1-1','1-2']" theme="dark" :collapse="collapseMenu">
                 <el-submenu index="1-1">
@@ -135,14 +135,22 @@
                       </span>
                   </div>
                 </el-menu-item>
-                <!--<el-menu-item index="1-2-2">-->
-                  <!--<div slot="title" class="jw-menu-item-text">-->
-                    <!--<i class="iconfont icon-yiqishebeiliuzhuan" ></i>-->
-                    <!--<span slot="title">-->
-                        <!--<router-link slot="title" :to="'/admin/customer/maintain'">保养信息</router-link>-->
-                      <!--</span>-->
-                  <!--</div>-->
-                <!--</el-menu-item>-->
+                <el-menu-item index="1-2-2">
+                  <div slot="title" class="jw-menu-item-text">
+                    <i class="iconfont icon-yiqishebeiliuzhuan" ></i>
+                    <span slot="title">
+                        <router-link slot="title" :to="'/admin/customer/maintain'">客户保养信息</router-link>
+                      </span>
+                  </div>
+                </el-menu-item>
+                <el-menu-item index="1-2-3">
+                  <div slot="title" class="jw-menu-item-text">
+                    <i class="iconfont icon-yiqishebeiliuzhuan" ></i>
+                    <span slot="title">
+                        <router-link slot="title" :to="'/admin/customer/repair'">客户维修信息</router-link>
+                      </span>
+                  </div>
+                </el-menu-item>
               </el-submenu>
             </el-menu>
           </div>

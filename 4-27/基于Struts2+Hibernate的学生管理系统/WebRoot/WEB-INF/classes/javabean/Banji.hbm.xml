@@ -16,7 +16,7 @@
         <property name="word" type="string">
             <column name="word" length="45" />
         </property>
-        <set name="students" inverse="true">
+        <set name="students">
             <key>
                 <column name="classid" />
             </key>
