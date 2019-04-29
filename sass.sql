@@ -25,7 +25,7 @@ CREATE TABLE `banji` (
   `name` varchar(45) NOT NULL,
   `word` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=gbk;
 
 /*Data for the table `banji` */
 
@@ -48,9 +48,12 @@ CREATE TABLE `billentry` (
   `remark` varchar(300) DEFAULT NULL,
   `commodityId` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `billentry` */
+
+insert  into `billentry`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`addr`,`purchasedDate`,`making`,`Handle`,`remark`,`commodityId`) values 
+(2,'阿萨德','城南宏能汽车',1,1,1,'湖南鑫亿德汽车服务有限公司','长沙市城汽配城2栋132-133 0731-88577735','2019-04-29','管理员','余琴','','1');
 
 /*Table structure for table `commodity` */
 
@@ -72,8 +75,7 @@ CREATE TABLE `commodity` (
 /*Data for the table `commodity` */
 
 insert  into `commodity`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`purchased_date`,`remark`) values 
-(1,'xas','阿萨德',212,213,23123,'啊实打实的','2019-04-27','奥术大师大所大声道'),
-(2,'xdsd','czdsa',312,342,435345,'啊实打实的','2019-04-27','春风骀荡多多多多多多');
+(1,'xads啊啊','萨达',1,1,1,'阿萨德','2019-04-29','');
 
 /*Table structure for table `maintain` */
 
@@ -86,10 +88,10 @@ CREATE TABLE `maintain` (
   `CompulsoryInsurance` date DEFAULT NULL,
   `content` varchar(300) DEFAULT NULL,
   `userID` int(10) unsigned DEFAULT NULL,
+  `userName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `a` (`userID`),
-  CONSTRAINT `a` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `a` (`userID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `maintain` */
 
@@ -116,47 +118,23 @@ CREATE TABLE `outbound` (
 
 /*Data for the table `outbound` */
 
-insert  into `outbound`(`id`,`no`,`name`,`number`,`price`,`money`,`manufacturer`,`addr`,`purchasedDate`,`making`,`Handle`,`remark`,`commodityId`) values 
-(1,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
-(2,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(3,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
-(4,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(5,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(6,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
-(7,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
-(8,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
-(9,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
-(10,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(11,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
-(12,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(13,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(14,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
-(15,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
-(16,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
-(17,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
-(18,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(19,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
-(20,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(21,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(22,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
-(23,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
-(24,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
-(25,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
-(26,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(27,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
-(28,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(29,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(30,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
-(31,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
-(32,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL),
-(33,'asd','asd',1,1,1,'asd','asd','2019-04-27','','asd','asd','1,2'),
-(34,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(35,'','行政村',1,1,1,'','','2019-04-27','','','',NULL),
-(36,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(37,'','阿萨德',1,1,1,'','','2019-04-27','','','',NULL),
-(38,'','按时大多数',1,1,1,'','','2019-04-27','','','',NULL),
-(39,'','撒大声地',1,1,1,'','','2019-04-27','','','',NULL),
-(40,'','啊实打实的',1,1,1,'','','2019-04-27','','','',NULL);
+/*Table structure for table `repair` */
+
+DROP TABLE IF EXISTS `repair`;
+
+CREATE TABLE `repair` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `license` varchar(10) DEFAULT NULL,
+  `mileage` varchar(10) DEFAULT NULL,
+  `CompulsoryInsurance` date DEFAULT NULL,
+  `content` varchar(300) DEFAULT NULL,
+  `userID` int(10) unsigned DEFAULT NULL,
+  `userName` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `a` (`userID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `repair` */
 
 /*Table structure for table `student` */
 
@@ -173,7 +151,7 @@ CREATE TABLE `student` (
   PRIMARY KEY (`id`),
   KEY `FOREIGN KEY` (`classid`),
   CONSTRAINT `FOREIGN KEY` FOREIGN KEY (`classid`) REFERENCES `banji` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=gbk;
 
 /*Data for the table `student` */
 
@@ -191,12 +169,9 @@ CREATE TABLE `user` (
   `phone` varchar(100) DEFAULT NULL,
   `level` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=gbk;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=gbk;
 
 /*Data for the table `user` */
-
-insert  into `user`(`id`,`name`,`sex`,`age`,`birthday`,`remark`,`phone`,`level`) values 
-(1,'阿道夫吓死','男','20','2019-04-20','撒地方反复','1563132',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
