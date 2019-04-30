@@ -161,21 +161,17 @@ import org.json.JSONObject;
        String str = unit.getRequestPayload(request);
        JSONObject json2 = new JSONObject(str);
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+       Date date = sdf.parse(json2.getString("purchasedDate"));
        JSONArray equipmentDetailList=json2.getJSONArray("equipmentDetailList");
        String commodityId=null;
        for (int i = 0; i < equipmentDetailList.length(); i++) {
-    	   JSONObject json3=(JSONObject) equipmentDetailList.get(i);
-		CommodityListDao list=new CommodityListDao();
-		Date date = sdf.parse(json3.getString("purchasedDate"));
-		Commoditylist a =new Commoditylist(json3.getString("no"),json3.getString("name"),json3.getInt("number"), 
-	    		  json3.getDouble("price"),null,json3.getString("manufacturer"),date,json3.getString("remark"));
-			if(commodityId!=null){
-	   			commodityId=commodityId+","+list.addCommoditylist(a);
-	   		}else{
-	   			commodityId=""+list.addCommoditylist(a);
-	   		}
-	   }
-       Date date = sdf.parse(json2.getString("purchasedDate"));
+   		JSONObject a=(JSONObject) equipmentDetailList.get(i);
+   		if(commodityId!=null){
+   			commodityId=commodityId+","+a.getInt("id");
+   		}else{
+   			commodityId=""+a.getInt("id");
+   		}
+	   } 
        Outbound a =new Outbound(json2.getString("no"),json2.getString("name"),json2.getInt("number"),json2.getDouble("price"),
     		   json2.getDouble("money"),json2.getString("manufacturer"),json2.getString("addr"),date,json2.getString("making"),
     		   json2.getString("handle"),json2.getString("remark"),commodityId);
