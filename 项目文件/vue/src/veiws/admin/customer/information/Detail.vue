@@ -43,7 +43,7 @@
           size: 'small',
           context: {
             name: '出库单',
-            url: '/hoNeng/UserAction.action',
+            url: '/api/UserAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {

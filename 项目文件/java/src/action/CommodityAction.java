@@ -129,7 +129,7 @@ import org.json.JSONObject;
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        Date date = sdf.parse(json2.getString("purchasedDate"));  
        Commodity a =new Commodity(json2.getString("no"),json2.getString("name"), 
-    		   json2.getInt("number"),json2.getDouble("price"),json2.getDouble("money"),json2.getString("manufacturer"),date,json2.getString("remark"));
+    		  json2.getDouble("price"),json2.getString("manufacturer"),date,json2.getString("remark"));
       JSONObject json = cabku.addCommodity(a);
        out.println(json);
      } else if (method.equals("PUT")) {
@@ -139,7 +139,7 @@ import org.json.JSONObject;
        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
        Date date = sdf.parse(json2.getString("purchasedDate"));
        Commodity a =new Commodity(json2.getString("no"),json2.getString("name"), 
-    		   json2.getInt("number"),json2.getDouble("price"),json2.getDouble("money"),json2.getString("manufacturer"),date,json2.getString("remark"));
+     		  json2.getDouble("price"),json2.getString("manufacturer"),date,json2.getString("remark"));
        if ((queryString != null) || (queryString != "")) {
          a.setId(Integer.valueOf(Integer.parseInt(queryString)));
        }

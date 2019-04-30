@@ -57,7 +57,7 @@
           size: 'small',
           context: {
             name: '保养信息',
-            url: '/hoNeng/MaintainAction.action',
+            url: '/api/MaintainAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {

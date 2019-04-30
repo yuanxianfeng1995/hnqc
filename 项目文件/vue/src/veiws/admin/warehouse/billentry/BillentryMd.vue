@@ -76,7 +76,7 @@
       open (orderDomain) {
         this.orderDomain = this.$lodash.merge({}, orderDomain)
         this.visible = true
-        this.$http.get('/hoNeng/BillentryAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
+        this.$http.get('/api/BillentryAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
           this.orderDomain = response.body.success ? response.body.data : {}
         })
       },

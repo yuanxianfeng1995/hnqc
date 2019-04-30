@@ -78,7 +78,7 @@
         console.log(this.orderDomain.id)
         this.visible = true
         let _this = this
-        this.$http.get('/hoNeng/OutboundAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
+        this.$http.get('/api/OutboundAction.action?orderBy=id&totalCount=&pageSize=30&pageNo=0&id=' + orderDomain.id).then((response) => {
           _this.orderDomain = response.body.success ? response.body.data : {}
           console.log(_this.orderDomain)
         })

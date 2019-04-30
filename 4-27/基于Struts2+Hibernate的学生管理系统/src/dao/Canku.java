@@ -1,12 +1,9 @@
  package dao;
 
- import daoImpi.CangkuImpi;
- import java.io.PrintStream;
-import java.util.HashSet;
- import java.util.List;
-import java.util.Set;
 
-import javabean.Commodity;
+ import java.util.List;
+
+import javabean.Commoditylist;
  import javabean.HibernateSessionFactory;
  import javabean.Outbound;
  import org.hibernate.Query;
@@ -121,13 +118,18 @@ import org.json.JSONObject;
        query = session.createQuery(sql);
        query.setString(0, value);
        Outbound tbUser = (Outbound)query.uniqueResult();
-       String commodityId=tbUser.getCommodityId();
-       System.out.println(commodityId);
-       if(commodityId!=null&&commodityId.indexOf(",")!=-1){
-    	   String[] a=commodityId.split(",");
-           for (int i = 0; i < a.length; i++) {
-        	   Commodity commodity=(Commodity)session.get(Commodity.class, Integer.valueOf(a[i]));
-        	   JSONObject json3 = new JSONObject(commodity);
+       String CommoditylistId=tbUser.getCommodityId();
+       if(CommoditylistId!=null){
+    	   if(CommoditylistId.indexOf(",")!=-1){
+	    	   String[] a=CommoditylistId.split(",");
+	           for (int i = 0; i < a.length; i++) {
+	        	   Commoditylist Commoditylist=(Commoditylist)session.get(Commoditylist.class, Integer.valueOf(a[i]));
+	        	   JSONObject json3 = new JSONObject(Commoditylist);
+	        	   jsonArray1.put(json3);
+	    	   }
+    	   }else{
+    		   Commoditylist Commoditylist=(Commoditylist)session.get(Commoditylist.class, Integer.valueOf(CommoditylistId));
+        	   JSONObject json3 = new JSONObject(Commoditylist);
         	   jsonArray1.put(json3);
     	   }
        }
@@ -146,7 +148,7 @@ import org.json.JSONObject;
      return json;
    }
 
-   public JSONObject addOutbound(Outbound Outbound,JSONArray equipmentDetailList)
+   public JSONObject addOutbound(Outbound Outbound)
    {
 	   Unit unit = new Unit();
 	     JSONObject json = new JSONObject();

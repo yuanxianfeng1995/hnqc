@@ -32,7 +32,7 @@
           },
           context: {
             name: '保养信息',
-            url: '/hoNeng/MaintainAction.action',
+            url: '/api/MaintainAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission

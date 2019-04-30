@@ -76,7 +76,7 @@
           size: 'small',
           context: {
             name: '出库单',
-            url: '/hoNeng/OutboundAction.action',
+            url: '/api/OutboundAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {
@@ -149,16 +149,11 @@
       }, {
         headerName: '数量',
         field: 'number',
-        type: ['NumberRender'],
+        type: ['NumberEditor'],
         width: 80
       }, {
         headerName: '单价',
         field: 'price',
-        type: ['NumberRender'],
-        width: 80
-      }, {
-        headerName: '金额',
-        field: 'money',
         type: ['NumberRender'],
         width: 80
       }, {
@@ -194,7 +189,7 @@
           if(this.entity.equipmentDetailList){
             if(this.entity.equipmentDetailList.length > 0){
               this.entity.equipmentDetailList.forEach(function(equipment) {
-                money= money + equipment.money
+                money= money + equipment.price * equipment.number || ''
               })
             }
           }
@@ -211,7 +206,7 @@
           if(this.entity.equipmentDetailList){
             if(this.entity.equipmentDetailList.length > 0){
               this.entity.equipmentDetailList.forEach(function(equipment) {
-                count= count + equipment.number
+                count= count + equipment.number || ''
               })
             }
           }
@@ -224,6 +219,9 @@
       }
     },
     methods: {
+      onLondmoney (params, entity) {
+        console.log('onLondmoney', entity)
+      },
       onAddItem (params, entity) {
         params.context.featureComponent.$refs.selector.open()
       },
@@ -243,9 +241,8 @@
               id: selectedTemplate.id,
               no: selectedTemplate.no,
               name: selectedTemplate.name,
-              number: selectedTemplate.number,
+              number: 1,
               price: selectedTemplate.price,
-              money: selectedTemplate.money,
               manufacturer: selectedTemplate.manufacturer,
               purchasedDate: selectedTemplate.purchasedDate,
               remark: ''

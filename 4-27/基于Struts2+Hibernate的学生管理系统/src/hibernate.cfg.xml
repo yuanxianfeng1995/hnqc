@@ -29,6 +29,7 @@
 		<mapping resource="javabean/Commodity.hbm.xml" />
 		<mapping resource="javabean/Maintain.hbm.xml" />
 		<mapping resource="javabean/Repair.hbm.xml" />
+		<mapping resource="javabean/Commoditylist.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>

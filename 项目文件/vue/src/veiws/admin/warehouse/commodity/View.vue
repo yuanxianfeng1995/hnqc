@@ -31,7 +31,7 @@
           },
           context: {
             name: '出库单',
-            url: '/hoNeng/CommodityAction.action',
+            url: '/api/CommodityAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission
@@ -79,18 +79,8 @@
         tooltipField: 'manufacturer',
         width: 120
       }, {
-        headerName: '数量',
-        field: 'number',
-        type: ['NumberRender'],
-        width: 120
-      }, {
-        headerName: '单价',
+        headerName: '单价(元)',
         field: 'price',
-        type: ['NumberRender'],
-        width: 120
-      }, {
-        headerName: '金额',
-        field: 'money',
         type: ['NumberRender'],
         width: 120
       }, {

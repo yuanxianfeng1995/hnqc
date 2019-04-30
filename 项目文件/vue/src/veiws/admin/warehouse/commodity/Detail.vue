@@ -10,14 +10,8 @@
       <el-form-item class="jw-field jw-field-1" label="单位" prop="manufacturer">
         <el-input v-model="entity.manufacturer"/>
       </el-form-item>
-      <el-form-item class="jw-field jw-field-1" label="数量" prop="number">
-        <el-input-number v-model="entity.number"/>
-      </el-form-item>
-      <el-form-item class="jw-field jw-field-1" label="价格(元)" prop="price">
+      <el-form-item class="jw-field jw-field-1" label="单价(元)" prop="price">
         <el-input-number v-model="entity.price" />
-      </el-form-item>
-      <el-form-item class="jw-field jw-field-1" label="金额" prop="purchasedDate">
-        <el-input-number v-model="entity.money" disabled/>
       </el-form-item>
       <el-form-item class="jw-field jw-field-1" label="录入日期" prop="purchasedDate">
         <el-date-picker v-model="entity.purchasedDate"/>
@@ -42,7 +36,7 @@
           size: 'small',
           context: {
             name: '出库单',
-            url: '/hoNeng/CommodityAction.action',
+            url: '/api/CommodityAction.action',
             detailComponent: this
           },
           createEntity(options, cb) {

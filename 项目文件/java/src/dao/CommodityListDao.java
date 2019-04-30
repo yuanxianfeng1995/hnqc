@@ -1,50 +1,23 @@
  package dao;
-
-
+ 
+ import daoImpi.CangkuImpi;
+ import java.io.PrintStream;
  import java.util.List;
-
-import javabean.Commoditylist;
  import javabean.HibernateSessionFactory;
- import javabean.Billentry;
+ import javabean.Commoditylist;
  import org.hibernate.Query;
  import org.hibernate.Session;
  import org.hibernate.Transaction;
-import org.json.JSONArray;
 import org.json.JSONObject;
-
- public  class BillentryDao
+ 
+ public  class CommodityListDao
  {
    private Session session;
    private Transaction transaction;
    private Query query;
-   private List<Billentry> list;
-   /**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Session session = HibernateSessionFactory.getSession();
-		Transaction transaction = session.beginTransaction();
-		     Unit unit = new Unit();
-		     Query query=null;
-		     List<Billentry> list=null;
-		     JSONObject json = null;
-      try {
-        query = session.createQuery("from Billentry");
-        query.setFirstResult(30);
-        query.setMaxResults(60);
-        list = query.list();
-        json = unit.jsonListSucces(list,36);
-        System.out.println("json-------"+json);
-   	    // 提交事务
-   	    transaction.commit();  
-   	    // 结束事务
-   	    session.close(); 
-   	}catch(Exception e){  
-   	    e.printStackTrace();  
-	}
-   	}
-   public JSONObject paging_Billentry(int count,int i)
+   private List<Commoditylist> list;
+
+   public JSONObject paging_Commoditylist(int count,int i)
    {
      session = HibernateSessionFactory.getSession();
      transaction = session.beginTransaction();
@@ -53,7 +26,7 @@ import org.json.JSONObject;
      Unit unit = new Unit();
      JSONObject json = null;
      try {
-       query = session.createQuery("from Billentry order by id desc");
+       query = session.createQuery("from Commoditylist order by id desc");
        query.setFirstResult(sum);
        query.setMaxResults(sum+30);
        list = query.list();
@@ -72,7 +45,7 @@ import org.json.JSONObject;
 	     transaction = session.beginTransaction();
 	     int count=0;
 	   try {
-		   String hql = "select count(*) from Billentry";  
+		   String hql = "select count(*) from Commoditylist";  
 	       Query query2 = session.createQuery(hql);
 	       Object obj=query2.uniqueResult();
 	       Long lobj=(Long) obj;
@@ -85,7 +58,7 @@ import org.json.JSONObject;
 	     }
 	   return count;
    }
-   public JSONObject list_Billentry(String sql, String value)
+   public JSONObject list_Commoditylist(String sql, String value)
    {
      session = HibernateSessionFactory.getSession();
      transaction = session.beginTransaction();
@@ -106,35 +79,19 @@ import org.json.JSONObject;
      }
      return json;
    }
-
-   public JSONObject query_Billentry(String sql, String value)
+   
+   public JSONObject query_Commoditylist(String sql, String value)
    {
      session = HibernateSessionFactory.getSession();
      transaction = session.beginTransaction();
      JSONObject json = null;
      Unit unit = new Unit();
-     JSONArray jsonArray1 = new JSONArray();
      try {
        query = session.createQuery(sql);
        query.setString(0, value);
-       Billentry tbUser = (Billentry)query.uniqueResult();
-       String CommoditylistId=tbUser.getCommodityId();
-       if(CommoditylistId!=null){
-    	   if(CommoditylistId.indexOf(",")!=-1){
-	    	   String[] a=CommoditylistId.split(",");
-	           for (int i = 0; i < a.length; i++) {
-	        	   Commoditylist Commoditylist=(Commoditylist)session.get(Commoditylist.class, Integer.valueOf(a[i]));
-	        	   JSONObject json3 = new JSONObject(Commoditylist);
-	        	   jsonArray1.put(json3);
-	    	   }
-    	   }else{
-    		   Commoditylist Commoditylist=(Commoditylist)session.get(Commoditylist.class, Integer.valueOf(CommoditylistId));
-        	   JSONObject json3 = new JSONObject(Commoditylist);
-        	   jsonArray1.put(json3);
-    	   }
-       }
+       Commoditylist tbUser = (Commoditylist)query.uniqueResult();
        JSONObject json2 = new JSONObject(tbUser);
-       json2.put("equipmentDetailList", jsonArray1);
+       System.out.println(json2);
        json = unit.jsonSucces();
        json.put("data", json2);
        transaction.commit();
@@ -147,39 +104,38 @@ import org.json.JSONObject;
      }
      return json;
    }
-
-   public JSONObject addBillentry(Billentry Billentry)
+   
+   public int addCommoditylist(Commoditylist Commoditylist)
    {
-	   Unit unit = new Unit();
-	     JSONObject json = new JSONObject();
-	     session = HibernateSessionFactory.getSession();
-	     transaction = session.beginTransaction();
-	     try {
-	       session.save(Billentry);
-	       json = unit.jsonSucces();
-	       json.put("data", Billentry);
-	       transaction.commit();
-	       session.close();
+     Unit unit = new Unit();
+     JSONObject json = new JSONObject();
+     session = HibernateSessionFactory.getSession();
+     transaction = session.beginTransaction();
+     int id=0;
+     System.out.println("addCommoditylist ---"+Commoditylist);
+     try {  
+       id = (Integer)session.save(Commoditylist);
+       System.out.println("id ---"+id);
+       transaction.commit();
+       session.close();
      }
      catch (Exception e) {
        e.printStackTrace();
-       json = unit.jsonError();
-       json.put("data", e);
      }
-
-     return json;
+     
+     return id;
    }
-
-   public JSONObject update(Billentry Billentry)
+   
+   public JSONObject update(Commoditylist Commoditylist)
    {
      Unit unit = new Unit();
      JSONObject json = new JSONObject();
      session = HibernateSessionFactory.getSession();
      transaction = session.beginTransaction();
      try {
-       session.update(Billentry);
+       session.update(Commoditylist);
        json = unit.jsonSucces();
-       json.put("data", Billentry);
+       json.put("data", Commoditylist);
        transaction.commit();
        session.close();
      }
@@ -188,10 +144,10 @@ import org.json.JSONObject;
        json = unit.jsonError();
        json.put("data", e);
      }
-
+     
      return json;
    }
-
+   
    public JSONObject deldate(int id)
    {
      Unit unit = new Unit();
@@ -199,9 +155,9 @@ import org.json.JSONObject;
      session = HibernateSessionFactory.getSession();
      transaction = session.beginTransaction();
      try {
-       Billentry s = new Billentry();
+       Commoditylist s = new Commoditylist();
        System.out.println(id);
-       s = (Billentry)session.get(Billentry.class, Integer.valueOf(id));
+       s = (Commoditylist)session.get(Commoditylist.class, Integer.valueOf(id));
        session.delete(s);
        json = unit.jsonSucces();
        json.put("data", s);

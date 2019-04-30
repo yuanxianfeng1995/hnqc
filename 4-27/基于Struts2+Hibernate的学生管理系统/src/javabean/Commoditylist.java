@@ -3,17 +3,19 @@ package javabean;
 import java.util.Date;
 
 /**
- * Commodity entity. @author MyEclipse Persistence Tools
+ * Commoditylist entity. @author MyEclipse Persistence Tools
  */
 
-public class Commodity implements java.io.Serializable {
+public class Commoditylist implements java.io.Serializable {
 
 	// Fields
 
 	private Integer id;
 	private String no;
 	private String name;
+	private Integer number;
 	private Double price;
+	private Double money;
 	private String manufacturer;
 	private Date purchasedDate;
 	private String remark;
@@ -21,20 +23,22 @@ public class Commodity implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Commodity() {
+	public Commoditylist() {
 	}
 
 	/** minimal constructor */
-	public Commodity(String name) {
+	public Commoditylist(String name) {
 		this.name = name;
 	}
 
 	/** full constructor */
-	public Commodity(String no, String name, Double price, String manufacturer,
-			Date purchasedDate, String remark) {
+	public Commoditylist(String no, String name, Integer number, Double price,
+			Double money, String manufacturer, Date purchasedDate, String remark) {
 		this.no = no;
 		this.name = name;
+		this.number = number;
 		this.price = price;
+		this.money = money;
 		this.manufacturer = manufacturer;
 		this.purchasedDate = purchasedDate;
 		this.remark = remark;
@@ -66,12 +70,28 @@ public class Commodity implements java.io.Serializable {
 		this.name = name;
 	}
 
+	public Integer getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
 	public Double getPrice() {
 		return this.price;
 	}
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Double getMoney() {
+		return this.money;
+	}
+
+	public void setMoney(Double money) {
+		this.money = money;
 	}
 
 	public String getManufacturer() {

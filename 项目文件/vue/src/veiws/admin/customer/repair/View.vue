@@ -32,7 +32,7 @@
           },
           context: {
             name: '维修信息',
-            url: '/hoNeng/RepairAction.action',
+            url: '/api/RepairAction.action',
             featureComponent: this,
             getPermissions (params, operation) {
               return params.context.featureComponent.permission

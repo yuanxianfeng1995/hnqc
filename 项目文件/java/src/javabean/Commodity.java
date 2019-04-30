@@ -13,9 +13,7 @@ public class Commodity implements java.io.Serializable {
 	private Integer id;
 	private String no;
 	private String name;
-	private Integer number;
-	private double price;
-	private double money;
+	private Double price;
 	private String manufacturer;
 	private Date purchasedDate;
 	private String remark;
@@ -32,13 +30,11 @@ public class Commodity implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Commodity(String no, String name, Integer number, double price,
-			double money, String manufacturer, Date purchasedDate, String remark) {
+	public Commodity(String no, String name, Double price, String manufacturer,
+			Date purchasedDate, String remark) {
 		this.no = no;
 		this.name = name;
-		this.number = number;
 		this.price = price;
-		this.money = money;
 		this.manufacturer = manufacturer;
 		this.purchasedDate = purchasedDate;
 		this.remark = remark;
@@ -70,28 +66,12 @@ public class Commodity implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Integer getNumber() {
-		return this.number;
-	}
-
-	public void setNumber(Integer number) {
-		this.number = number;
-	}
-
-	public double getPrice() {
+	public Double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public double getMoney() {
-		return this.money;
-	}
-
-	public void setMoney(double money) {
-		this.money = money;
 	}
 
 	public String getManufacturer() {
